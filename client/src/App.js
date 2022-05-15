@@ -10,18 +10,23 @@ function App() {
   return (
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <a href="/tutorials" className="navbar-brand">
-          bezKoder
+        <a href="/" className="navbar-brand">
+          Kook Boards
         </a>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
-            <Link to={"/tutorials"} className="nav-link">
-              Tutorials
+            <Link to={"/"} className="nav-link">
+              Surfboards
             </Link>
           </li>
           <li className="nav-item">
             <Link to={"/add"} className="nav-link">
-              Add
+              Shopping Cart
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to={"/add"} className="nav-link">
+              About Us
             </Link>
           </li>
         </div>

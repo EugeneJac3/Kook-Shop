@@ -4,7 +4,7 @@ import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import AddTutorial from "./components/AddTutorial";
 import Tutorial from "./components/Tutorial";
-import TutorialsList from "./components/TutorialsList";
+import ProductsList from "./components/ProductsList";
 
 function App() {
   return (
@@ -28,8 +28,8 @@ function App() {
       </nav>
       <div className="container mt-3">
         <Routes>
-          <Route path="/" element={<TutorialsList />} />
-          <Route path="/tutorials" element={<TutorialsList />} />
+          <Route path="/" element={<ProductsList />} />
+          {/* <Route path="/tutorials" element={<TutorialsList />} /> */}
           <Route path="/add" element={<AddTutorial />} />
           <Route path="/tutorials/:id" element={<Tutorial />} />
         </Routes>

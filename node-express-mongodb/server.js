@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+require("dotenv").config();
+
 var corsOptions = {
   origin: "http://localhost:8081",
 };
@@ -17,9 +19,11 @@ app.get("/", (req, res) => {
 require("./app/routes/tutorial.routes")(app);
 
 // set port, listen for requests
+const URI = process.env.MONGO_URI;
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
+  console.log(`Mongo URI =  ${URI}.`);
 });
 
 const db = require("./app/models");

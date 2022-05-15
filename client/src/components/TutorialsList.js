@@ -86,7 +86,7 @@ const TutorialsList = () => {
                 onClick={() => setActiveTutorial(tutorial, index)}
                 key={index}
               >
-                {tutorial.title}
+                {tutorial.name}
               </li>
             ))}
         </ul>

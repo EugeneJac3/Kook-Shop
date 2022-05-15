@@ -1,14 +1,17 @@
 module.exports = (mongoose) => {
-  const Tutorial = mongoose.model(
-    "tutorial",
+  const Product = mongoose.model(
+    "product",
     mongoose.Schema(
       {
-        title: String,
+        name: String,
+        brade: String,
+        price: Number,
         description: String,
+        imgURL: String,
         published: Boolean,
       },
       { timestamps: true }
     )
   );
-  return Tutorial;
+  return Product;
 };

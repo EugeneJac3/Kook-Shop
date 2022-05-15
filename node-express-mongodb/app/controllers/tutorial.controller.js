@@ -1,5 +1,5 @@
 const db = require("../models");
-const Tutorial = db.tutorials;
+const Product = db.products;
 // Create and Save a new Tutorial
 exports.create = (req, res) => {
   // Validate request
@@ -32,9 +32,10 @@ exports.findAll = (req, res) => {
   var condition = title
     ? { title: { $regex: new RegExp(title), $options: "i" } }
     : {};
-  Tutorial.find(condition)
+  Product.find(condition)
     .then((data) => {
       res.send(data);
+      // console.log("retrieved all db:", data);
     })
     .catch((err) => {
       res.status(500).send({

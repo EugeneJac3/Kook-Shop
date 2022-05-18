@@ -5,32 +5,12 @@ import { Routes, Route, Link } from "react-router-dom";
 import AddTutorial from "./components/AddTutorial";
 import Tutorial from "./components/Tutorial";
 import ProductsList from "./components/ProductsList";
+import ResponsiveAppBar from "./components/navBar";
 
 function App() {
   return (
     <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <a href="/" className="navbar-brand">
-          Kook Boards
-        </a>
-        <div className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link to={"/"} className="nav-link">
-              Surfboards
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to={"/add"} className="nav-link">
-              Shopping Cart
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to={"/add"} className="nav-link">
-              About Us
-            </Link>
-          </li>
-        </div>
-      </nav>
+      <ResponsiveAppBar />
       <div className="container mt-3">
         <Routes>
           <Route path="/" element={<ProductsList />} />

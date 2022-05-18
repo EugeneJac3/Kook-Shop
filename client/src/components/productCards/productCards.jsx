@@ -10,7 +10,7 @@ export default function ProductCards({ products }) {
   return (
     <div className="productCards">
       {products.map((product, index) => (
-        <Card className="productCard" sx={{ maxWidth: 345 }}>
+        <Card className="productCard" sx={{ maxWidth: 345 }} key={index}>
           <CardActionArea>
             <CardMedia
               component="img"

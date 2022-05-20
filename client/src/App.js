@@ -5,13 +5,18 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import AddTutorial from "./components/AddTutorial";
 import Tutorial from "./components/Tutorial";
 import ProductsList from "./components/ProductsList";
+
 import Register from "./components/users/Register"
 import Login from "./components/users/Login";
 import Secret from "./components/users/Secret";
 
+import ResponsiveAppBar from "./components/navBar";
+
+
 function App() {
   return (
     <div>
+
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <a href="/" className="navbar-brand">
           Kook Boards
@@ -44,6 +49,8 @@ function App() {
           </li>
         </div>
       </nav>
+      <ResponsiveAppBar />
+
       <div className="container mt-3">
         <Routes>
           <Route path="/" element={<ProductsList />} />

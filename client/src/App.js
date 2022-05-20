@@ -1,10 +1,13 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import AddTutorial from "./components/AddTutorial";
 import Tutorial from "./components/Tutorial";
 import ProductsList from "./components/ProductsList";
+import Register from "./components/users/Register"
+import Login from "./components/users/Login";
+import Secret from "./components/users/Secret";
 
 function App() {
   return (
@@ -25,6 +28,16 @@ function App() {
             </Link>
           </li>
           <li className="nav-item">
+            <Link to={"/register"} className="nav-link">
+              Register
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to={"/login"} className="nav-link">
+              Login
+            </Link>
+          </li>
+          <li className="nav-item">
             <Link to={"/add"} className="nav-link">
               About Us
             </Link>
@@ -37,6 +50,9 @@ function App() {
           {/* <Route path="/tutorials" element={<TutorialsList />} /> */}
           <Route path="/add" element={<AddTutorial />} />
           <Route path="/tutorials/:id" element={<Tutorial />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/secret" element={<Secret />} />
         </Routes>
       </div>
     </div>

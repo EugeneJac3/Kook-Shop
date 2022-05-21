@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,12 +12,17 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import SurfingIcon from "@mui/icons-material/Surfing";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { Badge } from "@mui/material";
+import { CartContext } from "./../helper/Context";
+import { useCart } from "react-use-cart";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const ResponsiveAppBar = () => {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
+	const { totalItems } = useCart();
 
 	const handleOpenNavMenu = (event) => {
 		setAnchorElNav(event.currentTarget);
@@ -33,7 +38,11 @@ const ResponsiveAppBar = () => {
 	const handleCloseUserMenu = () => {
 		setAnchorElUser(null);
 	};
+	const { cartItems, setCartItems } = useContext(CartContext);
 
+	useEffect(() => {
+		setCartItems(totalItems);
+	}, [totalItems]);
 	return (
 		<AppBar position="sticky">
 			<Container maxWidth="xl">
@@ -139,14 +148,6 @@ const ResponsiveAppBar = () => {
 							onClick={handleCloseNavMenu}
 							sx={{ my: 2, color: "white", display: "block" }}
 							component="a"
-							href="/shopping-cart"
-						>
-							Shopping Cart
-						</Button>
-						<Button
-							onClick={handleCloseNavMenu}
-							sx={{ my: 2, color: "white", display: "block" }}
-							component="a"
 							href="/about-us"
 						>
 							About Us
@@ -154,6 +155,14 @@ const ResponsiveAppBar = () => {
 					</Box>
 
 					<Box sx={{ flexGrow: 0 }}>
+						<Button href="/shopping-cart" onClick={handleCloseNavMenu}>
+							<Badge badgeContent={cartItems} color="secondary">
+								<ShoppingCartIcon
+									fontSize="large"
+									sx={{ color: "white", display: "block" }}
+								></ShoppingCartIcon>
+							</Badge>
+						</Button>
 						<Tooltip title="Open settings">
 							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 								<Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />

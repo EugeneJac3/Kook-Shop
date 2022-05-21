@@ -1,12 +1,17 @@
-import * as React from "react";
-import "./ProductCards.css";
+import React, { useContext } from "react";
+import "./productCards.css";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
+import { useCart } from "react-use-cart";
+import { CartContext } from "../../helper/Context";
 
 export default function ProductCards({ products }) {
+	const { addItem, totalItems } = useCart();
+	const { cartItems, setCartItems } = useContext(CartContext);
+
 	return (
 		<div className="productCards">
 			{products.map((product, index) => (
@@ -34,7 +39,14 @@ export default function ProductCards({ products }) {
 						</CardContent>
 					</CardActionArea>
 					<CardActions>
-						<Button size="small" color="primary">
+						<Button
+							size="small"
+							color="primary"
+							onClick={() => {
+								addItem(product);
+								setCartItems(totalItems);
+							}}
+						>
 							Add to Cart
 						</Button>
 					</CardActions>

@@ -1,58 +1,32 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import { CartProvider } from "react-use-cart";
 import ProductsList from "./components/ProductsList";
 import Register from "./components/users/Register";
 import Login from "./components/users/Login";
 import Secret from "./components/users/Secret";
 import ResponsiveAppBar from "./components/navBar";
+import { CartContext } from "./helper/Context";
+import Cart from "./components/cart/Cart";
 
 function App() {
-	return (
-		<div>
-			<nav className="navbar navbar-expand navbar-dark bg-dark">
-				<a href="/" className="navbar-brand">
-					Kook Boards
-				</a>
-				<div className="navbar-nav mr-auto">
-					<li className="nav-item">
-						<Link to={"/"} className="nav-link">
-							Surfboards
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link to={"/add"} className="nav-link">
-							Shopping Cart
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link to={"/register"} className="nav-link">
-							Register
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link to={"/login"} className="nav-link">
-							Login
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link to={"/add"} className="nav-link">
-							About Us
-						</Link>
-					</li>
-				</div>
-			</nav>
-			<ResponsiveAppBar />
+	const [cartItems, setCartItems] = useState("");
 
-			<div className="container mt-3">
+	return (
+		<CartContext.Provider value={{ cartItems, setCartItems }}>
+			<CartProvider>
+				<ResponsiveAppBar />
 				<Routes>
 					<Route path="/" element={<ProductsList />} />
 					<Route path="/register" element={<Register />} />
+					<Route path="/shopping-cart" element={<Cart />} />
+
 					<Route path="/login" element={<Login />} />
 					<Route path="/secret" element={<Secret />} />
 				</Routes>
-			</div>
-		</div>
+			</CartProvider>
+		</CartContext.Provider>
 	);
 }
 

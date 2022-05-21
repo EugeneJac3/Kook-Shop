@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ProductDataService from "../services/ProductService";
-import ProductCards from "./productCards/ProductCards.jsx";
+import ProductCards from "./productCards/productCards.jsx";
 import Grid from "@mui/material/Grid";
 import Checkbox from "@mui/material/Checkbox";
 import Box from "@mui/material/Box";

@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import Buttons from "./buttons";
 import { makeStyles } from "@mui/styles";
+import Slider from "./slider/Slider";
 
 const ProductsList = () => {
   const [allProducts, setAllProducts] = useState([]);
@@ -41,8 +42,8 @@ const ProductsList = () => {
       height: "50vh",
       marginTop: "50px",
       marginLeft: "20px",
-      marginRight: "20px",
-      width: "10vh",
+      marginRight: "50px",
+      width: "15vh",
     },
     box: {
       color: "white",
@@ -52,28 +53,31 @@ const ProductsList = () => {
   const classes = useStyles();
 
   return (
-    <Box className={classes.root}>
-      <Box className={classes.sidebar}>
-        <Box className={classes.box}>
-          <Typography variant="h4" component="div" gutterBottom>
-            Filter Brands
-          </Typography>
+    <Box>
+      <Slider />
+      <Box className={classes.root}>
+        <Box className={classes.sidebar}>
+          <Box className={classes.box}>
+            <Typography variant="h4" component="div" gutterBottom>
+              Filter Brands
+            </Typography>
+          </Box>
+          <Box>
+            <Typography variant="h4" component="div" gutterBottom>
+              Filter Brands
+            </Typography>
+          </Box>
+          <Box>
+            <Buttons
+              originalProducts={allProducts}
+              setProducts={setProducts}
+              productItems={productItems}
+            />
+          </Box>
         </Box>
-        <Box>
-          <Typography variant="h4" component="div" gutterBottom>
-            Filter Brands
-          </Typography>
+        <Box className={classes.main}>
+          <ProductCards products={products} key={products._id} />
         </Box>
-        <Box>
-          <Buttons
-            originalProducts={allProducts}
-            setProducts={setProducts}
-            productItems={productItems}
-          />
-        </Box>
-      </Box>
-      <Box className={classes.main}>
-        <ProductCards products={products} key={products._id} />
       </Box>
     </Box>
   );

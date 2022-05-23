@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./productCards.css";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -8,10 +8,35 @@ import { Button, CardActionArea, CardActions } from "@mui/material";
 import { useCart } from "react-use-cart";
 import { CartContext } from "../../helper/Context";
 import Box from "@mui/material/Box";
+import Modal from "react-modal";
+import ModalContent from "../ModalContent.jsx";
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
 
 export default function ProductCards({ products }) {
   const { addItem, totalItems } = useCart();
   const { cartItems, setCartItems } = useContext(CartContext);
+  const [selectedProduct, setSelectedProduct] = useState({});
+
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal(product) {
+    setSelectedProduct(product);
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   return (
     <Box className="productCards">
@@ -28,7 +53,7 @@ export default function ProductCards({ products }) {
               width="100%"
               image={product.imgURL}
               alt={product.name}
-              onClick
+              onClick={() => openModal(product)}
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
@@ -37,9 +62,7 @@ export default function ProductCards({ products }) {
               <Typography variant="body1" color="text.secondary">
                 Brand: {product.brand}
               </Typography>
-              {/* <Typography variant="body2" color="text.secondary">
-                Description: {product.description}
-              </Typography> */}
+
               <Typography variant="body1" color="text.secondary">
                 Price: ${product.price}
               </Typography>
@@ -59,6 +82,17 @@ export default function ProductCards({ products }) {
           </CardActions>
         </Card>
       ))}
+
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <button onClick={closeModal}>close</button>
+        <div>Product Info Card</div>
+        <ModalContent product={selectedProduct} />
+      </Modal>
     </Box>
   );
 }

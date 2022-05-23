@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import Buttons from "./buttons";
 import { makeStyles } from "@mui/styles";
-import Slider from "./slider/Slider";
+import CoolSlider from "./coolSlider/coolSlider";
 
 const ProductsList = () => {
   const [allProducts, setAllProducts] = useState([]);
@@ -54,7 +54,7 @@ const ProductsList = () => {
 
   return (
     <Box>
-      <Slider />
+      <CoolSlider />
       <Box className={classes.root}>
         <Box className={classes.sidebar}>
           <Box className={classes.box}>

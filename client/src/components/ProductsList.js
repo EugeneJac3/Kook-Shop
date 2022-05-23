@@ -3,9 +3,9 @@ import ProductDataService from "../services/ProductService";
 import ProductCards from "./productCards/productCards.jsx";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
-import Buttons from "./buttons";
 import { makeStyles } from "@mui/styles";
 import CoolSlider from "./coolSlider/coolSlider";
+import DropdownFilter from "./dropdownFilter";
 
 const ProductsList = () => {
   const [allProducts, setAllProducts] = useState([]);
@@ -33,20 +33,14 @@ const ProductsList = () => {
   const useStyles = makeStyles({
     root: {
       display: "flex",
-      height: "100%",
+      justifyContent: "center",
     },
-    sidebar: {
-      top: "0",
-      position: "-webkit-sticky",
+    filterSection: {
+      margin: "10px",
       position: "sticky",
-      height: "50vh",
-      marginTop: "50px",
-      marginLeft: "20px",
-      marginRight: "50px",
-      width: "15vh",
-    },
-    box: {
-      color: "white",
+      top: 0,
+      display: "flex",
+      justifyContent: "flex-start",
     },
   });
 
@@ -55,26 +49,14 @@ const ProductsList = () => {
   return (
     <Box>
       <CoolSlider />
+      <Box className={classes.filterSection}>
+        <DropdownFilter
+          originalProducts={allProducts}
+          setProducts={setProducts}
+          productItems={productItems}
+        />
+      </Box>
       <Box className={classes.root}>
-        <Box className={classes.sidebar}>
-          <Box className={classes.box}>
-            <Typography variant="h4" component="div" gutterBottom>
-              Filter Brands
-            </Typography>
-          </Box>
-          <Box>
-            <Typography variant="h4" component="div" gutterBottom>
-              Filter Brands
-            </Typography>
-          </Box>
-          <Box>
-            <Buttons
-              originalProducts={allProducts}
-              setProducts={setProducts}
-              productItems={productItems}
-            />
-          </Box>
-        </Box>
         <Box className={classes.main}>
           <ProductCards products={products} key={products._id} />
         </Box>

@@ -1,14 +1,52 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 export default function Login() {
+	const [cookies] = useCookies([])
+	const navigate = useNavigate();
+
+	// useEffect(() => {
+	// 	if (cookies.jwt) {
+	// 	  navigate("/");
+	// 	}
+	//   }, [cookies, navigate]);
+
+
 	const [values, setValues] = useState({
 		email: "",
 		password: "",
 	});
+	
+	const generateError = (err) =>
+    toast.error(err, {
+      position: "bottom-right",
+    });
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		try {
+			const { data } = await axios.post("http://localhost:8080/api/login", {
+				...values,
+				
+			},{
+				withCredentials: true,}
+				);
+				console.log("user data" , data)
+			if (data) {
+				if (data.errors) {
+				 const {email, password} = data.errors;
+				 if(email) generateError(email);
+				 else if (password) generateError(password);
+				}  else {
+					navigate("/")
+				}
+			}
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	return (

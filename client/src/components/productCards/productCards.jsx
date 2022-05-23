@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./ProductCards.css";
+import "./productCards.css";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";

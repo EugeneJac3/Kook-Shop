@@ -6,6 +6,7 @@ import Register from "./components/users/Register";
 import Login from "./components/users/Login";
 import Secret from "./components/users/Secret";
 import ResponsiveAppBar from "./components/navBar";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 	return (

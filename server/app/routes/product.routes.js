@@ -5,6 +5,8 @@ module.exports = (app) => {
 
 	//Register route
 	router.post("/register", products.register);
+	//Register route
+	router.post("/login", products.login);
 	// Retrieve all Products
 	router.get("/products", products.findAll);
 

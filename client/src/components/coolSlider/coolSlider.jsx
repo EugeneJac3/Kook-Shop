@@ -7,11 +7,12 @@ const AutoplaySlider = withAutoplay(AwesomeSlider);
 
 const CoolSlider = () => {
   return (
-    <div className="container">
+    <div>
       <AutoplaySlider
         play={true}
         cancelOnInteraction={false} // should stop playing on user interaction
         interval={6000}
+        className="slider"
       >
         <div className="imageDiv">
           {" "}

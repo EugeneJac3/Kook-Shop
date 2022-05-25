@@ -1,34 +1,41 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { CartProvider } from "react-use-cart";
 import ProductsList from "./components/ProductsList";
 import Register from "./components/users/Register";
 import Login from "./components/users/Login";
 import Secret from "./components/users/Secret";
 import ResponsiveAppBar from "./components/navBar";
-import 'react-toastify/dist/ReactToastify.css';
+import { CartContext } from "./helper/Context";
+import Cart from "./components/cart/Cart";
+import SurfboardProducts from "./components/surfboardProducts";
 
 function App() {
+
 	const navigate = useNavigate();
 
 	const logOut = () => {
 		navigate("/register")
 	}
 
-	return (
-		<div>
-			<ResponsiveAppBar />
+  const [cartItems, setCartItems] = useState("");
 
-			<div className="container mt-3">
-				<Routes>
-					<Route path="/" element={<ProductsList />} />
-					<Route path="/register" element={<Register />} />
-					<Route path="/login" element={<Login />} />
-					<Route path="/secret" element={<Secret />} />
-				</Routes>
-			</div>
-		</div>
-	);
+  return (
+    <CartContext.Provider value={{ cartItems, setCartItems }}>
+      <CartProvider>
+        <ResponsiveAppBar />
+        <Routes>
+          <Route path="/" element={<ProductsList />} />
+          <Route path="/surfboards" element={<SurfboardProducts />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/shopping-cart" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/secret" element={<Secret />} />
+        </Routes>
+      </CartProvider>
+    </CartContext.Provider>
+  );
 }
 
 export default App;

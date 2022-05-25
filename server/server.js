@@ -1,14 +1,17 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 var corsOptions = {
 	origin: "http://localhost:8081",
+	credentials: true,
 };
 app.use(cors(corsOptions));
 // parse requests of content-type - application/json
 app.use(express.json());
+app.use(cookieParser());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 // simple route

@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
 import { CartProvider } from "react-use-cart";
 import ProductsList from "./components/ProductsList";
 import Register from "./components/users/Register";
@@ -12,6 +12,13 @@ import Cart from "./components/cart/Cart";
 import SurfboardProducts from "./components/surfboardProducts";
 
 function App() {
+
+	const navigate = useNavigate();
+
+	const logOut = () => {
+		navigate("/register")
+	}
+
   const [cartItems, setCartItems] = useState("");
 
   return (

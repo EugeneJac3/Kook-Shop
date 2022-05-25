@@ -1,24 +1,37 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 
 export default function Register() {
+	const navigate = useNavigate();
 	const [values, setValues] = useState({
 		email: "",
 		password: "",
 	});
+	
+	const generateError = (err) =>
+    toast.error(err, {
+      position: "bottom-right",
+    });
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log(values);
 		try {
 			const { data } = await axios.post("http://localhost:8080/api/register", {
 				...values,
-			});
-			console.log(data);
+			},{
+				withCredentials: true,}
+				);
+				
 			if (data) {
 				if (data.errors) {
-				} else {
+					console.log("data.errors",data.errors)
+				 const {email, password} = data.errors;
+				 if(email) generateError(email);
+				 else if (password) alert("Needs Password");
+				}  else {
+					navigate("/login")
 				}
 			}
 		} catch (err) {
@@ -57,6 +70,7 @@ export default function Register() {
 					Already have an account? <Link to="/login">Login</Link>
 				</span>
 			</form>
+			<ToastContainer />
 		</div>
 	);
 }

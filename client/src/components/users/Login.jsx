@@ -8,11 +8,11 @@ export default function Login() {
 	const [cookies] = useCookies([])
 	const navigate = useNavigate();
 
-	// useEffect(() => {
-	// 	if (cookies.jwt) {
-	// 	  navigate("/");
-	// 	}
-	//   }, [cookies, navigate]);
+	useEffect(() => {
+		if (cookies.jwt) {
+		  navigate("/");
+		}
+	  }, [cookies, navigate]);
 
 
 	const [values, setValues] = useState({

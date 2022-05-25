@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import ProductsList from "./components/ProductsList";
 import Register from "./components/users/Register";
 import Login from "./components/users/Login";
@@ -9,40 +9,14 @@ import ResponsiveAppBar from "./components/navBar";
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
+	const navigate = useNavigate();
+
+	const logOut = () => {
+		navigate("/register")
+	}
+
 	return (
 		<div>
-			<nav className="navbar navbar-expand navbar-dark bg-dark">
-				<a href="/" className="navbar-brand">
-					Kook Boards
-				</a>
-				<div className="navbar-nav mr-auto">
-					<li className="nav-item">
-						<Link to={"/"} className="nav-link">
-							Surfboards
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link to={"/add"} className="nav-link">
-							Shopping Cart
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link to={"/register"} className="nav-link">
-							Register
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link to={"/login"} className="nav-link">
-							Login
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link to={"/add"} className="nav-link">
-							About Us
-						</Link>
-					</li>
-				</div>
-			</nav>
 			<ResponsiveAppBar />
 
 			<div className="container mt-3">

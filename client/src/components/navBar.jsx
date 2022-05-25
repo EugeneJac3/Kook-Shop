@@ -101,6 +101,33 @@ const ResponsiveAppBar = () => {
 								</Typography>
 							</MenuItem>
 							<MenuItem onClick={handleCloseNavMenu}>
+								<Typography
+									textAlign="center"
+									component="a"
+									href="/register"
+								>
+									Register
+								</Typography>
+							</MenuItem>
+							<MenuItem onClick={handleCloseNavMenu}>
+								<Typography
+									textAlign="center"
+									component="a"
+									href="/login"
+								>
+									Login
+								</Typography>
+							</MenuItem>
+							<MenuItem onClick={handleCloseNavMenu}>
+								<Typography
+									textAlign="center"
+									component="a"
+									href="/register"
+								>
+									Log Out
+								</Typography>
+							</MenuItem>
+							<MenuItem onClick={handleCloseNavMenu}>
 								<Typography textAlign="center" component="a" href="/about-us">
 									About us
 								</Typography>
@@ -139,7 +166,15 @@ const ResponsiveAppBar = () => {
 							onClick={handleCloseNavMenu}
 							sx={{ my: 2, color: "white", display: "block" }}
 							component="a"
-							href="/shopping-cart"
+							href="/register" 
+						>
+							Register
+							</Button>
+						<Button
+							onClick={handleCloseNavMenu}
+							sx={{ my: 2, color: "white", display: "block" }}
+							component="a"
+							href="/login"
 						>
 							Shopping Cart
 						</Button>
@@ -150,6 +185,14 @@ const ResponsiveAppBar = () => {
 							href="/about-us"
 						>
 							About Us
+						</Button>
+						<Button
+							onClick={handleCloseNavMenu}
+							sx={{ my: 2, color: "white", display: "block" }}
+							component="a"
+							href="/register"
+						>
+							Log Out
 						</Button>
 					</Box>
 

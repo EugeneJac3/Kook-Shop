@@ -23,12 +23,13 @@ export default function Register() {
 			},{
 				withCredentials: true,}
 				);
-				console.log(data)
+				
 			if (data) {
 				if (data.errors) {
+					console.log("data.errors",data.errors)
 				 const {email, password} = data.errors;
 				 if(email) generateError(email);
-				 else if (password) generateError(password);
+				 else if (password) alert("Needs Password");
 				}  else {
 					navigate("/login")
 				}

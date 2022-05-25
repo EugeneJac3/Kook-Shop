@@ -3,6 +3,9 @@ module.exports = (app) => {
 
 	var router = require("express").Router();
 
+
+	//Credentials route
+	router.post("/")
 	//Register route
 	router.post("/register", products.register);
 	//Register route

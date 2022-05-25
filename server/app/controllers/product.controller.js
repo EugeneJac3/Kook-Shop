@@ -24,14 +24,17 @@ exports.findAll = (req, res) => {
 
 const maxAge = 3 * 24 * 60 * 60;
 
-const createToken = (id) => {
-	return jwt.sign({ id }, process.env.KEY, {
-		expiresIn: maxAge,
-	});
-};
+// const createToken = (id) => {
+// 	return jwt.sign({ id }, process.env.KEY, {
+// 		expiresIn: maxAge,
+// 	});
+// };
 
 const handleErrors = (err) => {
 	let errors = {email:"", password:""};
+
+	if(err.message === "incorrect Email") errors.email = "That email is not registered";
+	if(err.message === "incorrect password") errors.password = "That password is incorrect";
 
 	if(err.code===11000) {
 		errors.email = "Email is already registered";
@@ -39,7 +42,7 @@ const handleErrors = (err) => {
 	}
 
 	if(err.message.includes("Users valdiation failed")) {
-		OBJECT.values(err.errors).forEach(({properties})=> {
+		Object.values(err.errors).forEach(({properties})=> {
 			errors[properties.path] = properties.message;
 		});
 	}
@@ -52,7 +55,10 @@ exports.register = async (req, res, next) => {
 	
 	
 	try {
+		
 		const { email, password } = req.body;
+		if(password){
+			
 		const hash = bcrypt.hashSync(password, saltRounds)
 		const user = await User.create({
 			 email, 
@@ -60,7 +66,11 @@ exports.register = async (req, res, next) => {
 			});
 			console.log("registration user", user)
 		
-		res.status(201).json({ user: user._id, created: true });
+		res.status(201).json({ user: user._id, created: true });} else {
+			//Figure this out!!!
+			console.log("password required")
+		}
+		
 	} catch (err) {
 		console.log(err);
 		const errors = handleErrors(err);
@@ -74,27 +84,25 @@ exports.login = async (req, res, next) => {
 	
 	const { email, password} = req.body;
 	const user = await User.findOne({
-	  where: {
 		email: email
-	  }
+	  
 	})
-	console.log("user from database", user)
-	console.log("incomning email", req.body.email)
-	console.log("matched email", email)
 	const comparePass = bcrypt.compareSync(password,user.password)
-	console.log("user after compare", user)
+	
 	  if (comparePass) {
 		  console.log("bcrypt", comparePass)
 		const token = jwt.sign(
 		  {
+			data: user.email,
 			id: user._id
 		  },
 		  process.env.KEY,
-		  {expiresIn: "1h"}
+		  {expiresIn: "3h"}
 		);
-		res.cookie("token", token)
-		console.log("user at the end with id", user.email)
-		return user
+		console.log("token user", user._id)
+		res.cookie("jwt", token, { httpOnly: false });
+		res.status(200).json({ user: user._id, status: true });
+		console.log("token", token)
 		} else {
 		  res.send('Sorry, wrong username/password')
 		}

@@ -49,7 +49,7 @@ export default function ProductCards({ products }) {
           <CardActionArea>
             <CardMedia
               component="img"
-              height="400px"
+              height="100%"
               width="100%"
               image={product.imgURL}
               alt={product.name}

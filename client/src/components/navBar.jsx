@@ -97,33 +97,26 @@ const ResponsiveAppBar = () => {
             >
               <MenuItem key="surf-boards" onClick={handleCloseNavMenu}>
                 <Typography textAlign="center" component="a" href="/surfboards">
-                  Surf boards
+                  Surfboards
                 </Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography
-                  textAlign="center"
-                  component="a"
-                  href="/shopping-cart"
-                >
-                  Shopping Cart
+                <Typography textAlign="center" component="a" href="/boogie">
+                  Boogie Boards
                 </Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography
-                  textAlign="center"
-                  component="a"
-                  href="/register"
-                >
+                <Typography textAlign="center" component="a" href="/fins">
+                  Surfboard Fins
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center" component="a" href="/register">
                   Register
                 </Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography
-                  textAlign="center"
-                  component="a"
-                  href="/login"
-                >
+                <Typography textAlign="center" component="a" href="/login">
                   Login
                 </Typography>
               </MenuItem>
@@ -144,7 +137,7 @@ const ResponsiveAppBar = () => {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -165,7 +158,23 @@ const ResponsiveAppBar = () => {
               component="a"
               href="/surfboards"
             >
-              Surf Boards
+              Surfboards
+            </Button>
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: "white", display: "block" }}
+              component="a"
+              href="/boogie"
+            >
+              Boogie Boards
+            </Button>
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: "white", display: "block" }}
+              component="a"
+              href="/fins"
+            >
+              Surfboard Fins
             </Button>
             <Button
               onClick={handleCloseNavMenu}

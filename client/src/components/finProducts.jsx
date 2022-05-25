@@ -4,7 +4,7 @@ import ProductCards from "./productCards/productCards.jsx";
 import Box from "@mui/material/Box";
 import DropdownFilter from "./dropdownFilter";
 
-const SurfboardProducts = () => {
+const FinProducts = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [products, setProducts] = useState([]);
 
@@ -20,7 +20,7 @@ const SurfboardProducts = () => {
       .then((response) => {
         const allItems = response.data;
         const categoryItems = allItems.filter(
-          (item) => item.category === "surfboard"
+          (item) => item.category === "fin"
         );
         setProducts(categoryItems);
         setAllProducts(categoryItems);
@@ -47,4 +47,4 @@ const SurfboardProducts = () => {
     </Box>
   );
 };
-export default SurfboardProducts;
+export default FinProducts;

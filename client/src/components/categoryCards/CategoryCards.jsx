@@ -9,8 +9,11 @@ import "./CategoryCards.css";
 
 export default function CategoryCards() {
   return (
-    <Box className="container" sx={{ display: "flex" }}>
-      <Card sx={{ maxWidth: 345, margin: "30px" }}>
+    <Box
+      className="container"
+      sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+    >
+      <Card sx={{ maxWidth: 345, margin: "20px" }}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -20,7 +23,7 @@ export default function CategoryCards() {
           />
         </CardActionArea>
       </Card>
-      <Card sx={{ maxWidth: 345, margin: "30px" }}>
+      <Card sx={{ maxWidth: 345, margin: "20px" }}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -30,7 +33,7 @@ export default function CategoryCards() {
           />
         </CardActionArea>
       </Card>
-      <Card sx={{ maxWidth: 345, margin: "30px" }}>
+      <Card sx={{ maxWidth: 345, margin: "20px" }}>
         <CardActionArea>
           <CardMedia
             component="img"

@@ -1,17 +1,16 @@
 module.exports = (app) => {
-	const products = require("../controllers/product.controller.js");
+  const products = require("../controllers/product.controller.js");
 
-	var router = require("express").Router();
+  var router = require("express").Router();
 
+  //Credentials route
+  router.post("/");
+  //Register route
+  router.post("/register", products.register);
+  //Register route
+  router.post("/login", products.login);
+  // Retrieve all Products
+  router.get("/products", products.findAll);
 
-	//Credentials route
-	router.post("/")
-	//Register route
-	router.post("/register", products.register);
-	//Register route
-	router.post("/login", products.login);
-	// Retrieve all Products
-	router.get("/products", products.findAll);
-
-	app.use("/api", router);
+  app.use("/api", router);
 };

@@ -46,14 +46,13 @@ export default function ProductCards({ products }) {
           sx={{ maxWidth: 255, margin: "10px" }}
           key={product._id}
         >
-          <CardActionArea>
+          <CardActionArea onClick={() => openModal(product)}>
             <CardMedia
               component="img"
               height="100%"
               width="100%"
               image={product.imgURL}
               alt={product.name}
-              onClick={() => openModal(product)}
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">

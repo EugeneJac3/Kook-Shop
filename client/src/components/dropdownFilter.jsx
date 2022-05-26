@@ -5,6 +5,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useState } from "react";
+import Box from "@mui/material/Box";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -82,7 +83,7 @@ export default function DropdownFilter({
   };
 
   return (
-    <div>
+    <Box sx={{ margin: "10px" }}>
       <Button
         id="demo-customized-button"
         aria-controls={open ? "demo-customized-menu" : undefined}
@@ -126,6 +127,6 @@ export default function DropdownFilter({
           All Brands
         </MenuItem>
       </StyledMenu>
-    </div>
+    </Box>
   );
 }

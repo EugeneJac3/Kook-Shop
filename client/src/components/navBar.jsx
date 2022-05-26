@@ -44,7 +44,7 @@ const ResponsiveAppBar = () => {
     setCartItems(totalItems);
   }, [totalItems]);
   return (
-    <AppBar position="sticky">
+    <AppBar position="sticky" sx={{ backgroundColor: "black" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <SurfingIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -111,23 +111,8 @@ const ResponsiveAppBar = () => {
                 </Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center" component="a" href="/register">
-                  Register
-                </Typography>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center" component="a" href="/login">
-                  Login
-                </Typography>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
                 <Typography textAlign="center" component="a" href="/about-us">
                   About us
-                </Typography>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center" component="a" href="/register">
-                  Log Out
                 </Typography>
               </MenuItem>
             </Menu>
@@ -180,36 +165,11 @@ const ResponsiveAppBar = () => {
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
               component="a"
-              href="/register"
-            >
-              Register
-            </Button>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "block" }}
-              component="a"
-              href="/login"
-            >
-              Login
-            </Button>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "block" }}
-              component="a"
               href="/about-us"
             >
               About Us
             </Button>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "block" }}
-              component="a"
-              href="/register"
-            >
-              Log Out
-            </Button>
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Button href="/shopping-cart" onClick={handleCloseNavMenu}>
               <Badge badgeContent={cartItems} color="secondary">
@@ -240,11 +200,21 @@ const ResponsiveAppBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem key="login" onClick={handleCloseUserMenu}>
+                <Typography textAlign="center" component="a" href="/login">
+                  Login
+                </Typography>
+              </MenuItem>
+              <MenuItem key="register" onClick={handleCloseUserMenu}>
+                <Typography textAlign="center" component="a" href="/register">
+                  Register
+                </Typography>
+              </MenuItem>
+              <MenuItem key="logout" onClick={handleCloseUserMenu}>
+                <Typography textAlign="center" component="a" href="/">
+                  Log Out
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

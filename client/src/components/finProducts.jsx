@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ProductDataService from "../services/ProductService";
 import ProductCards from "./productCards/productCards.jsx";
 import Box from "@mui/material/Box";
-import DropdownFilter from "./dropdownFilter";
+import BrandFilter from "./brandFilter";
 
 const FinProducts = () => {
   const [allProducts, setAllProducts] = useState([]);
@@ -33,7 +33,7 @@ const FinProducts = () => {
   return (
     <Box>
       <Box>
-        <DropdownFilter
+        <BrandFilter
           originalProducts={allProducts}
           setProducts={setProducts}
           productItems={productItems}

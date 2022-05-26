@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import ProductDataService from "../services/ProductService";
 import ProductCards from "./productCards/productCards.jsx";
 import Box from "@mui/material/Box";
-import DropdownFilter from "./dropdownFilter";
+import BrandFilter from "./brandFilter";
 
 const SurfboardProducts = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [products, setProducts] = useState([]);
 
   const productItems = [...new Set(allProducts.map((Val) => Val.brand))];
-  console.log("initial productItems:", productItems);
+  const productPrices = ["< $500", "< $750", "< $1000"];
 
   useEffect(() => {
     retrieveProducts();
@@ -33,7 +33,7 @@ const SurfboardProducts = () => {
   return (
     <Box>
       <Box>
-        <DropdownFilter
+        <BrandFilter
           originalProducts={allProducts}
           setProducts={setProducts}
           productItems={productItems}

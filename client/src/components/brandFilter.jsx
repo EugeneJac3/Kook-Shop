@@ -50,12 +50,12 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function DropdownFilter({
+export default function BrandFilter({
   originalProducts,
   setProducts,
   productItems,
 }) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const [selectedBrand, setSelectedBrand] = useState("Filter Brands");
 
   const open = Boolean(anchorEl);
@@ -96,6 +96,7 @@ export default function DropdownFilter({
       >
         {selectedBrand}
       </Button>
+
       <StyledMenu
         id="demo-customized-menu"
         MenuListProps={{

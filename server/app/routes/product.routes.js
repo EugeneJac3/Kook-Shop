@@ -3,15 +3,16 @@ module.exports = (app) => {
 
 	var router = require("express").Router();
 
-
 	//Credentials route
-	router.post("/")
+	router.post("/");
 	//Register route
 	router.post("/register", products.register);
 	//Register route
 	router.post("/login", products.login);
 	// Retrieve all Products
 	router.get("/products", products.findAll);
+	// Make Stripe checkout session
+	router.post("/create-checkout-session", products.checkout);
 
 	app.use("/api", router);
 };

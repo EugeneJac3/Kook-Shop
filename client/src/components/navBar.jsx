@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import {useCookies} from 'react-cookie'
-import axios from "axios"
+import { useCookies } from "react-cookie";
+import axios from "axios";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -28,30 +28,28 @@ const ResponsiveAppBar = () => {
   const { totalItems } = useCart();
   const navigate = useNavigate();
 
-  const [cookies,setCookie,removeCookie] = useCookies([]);
-//   useEffect(()=> {
-// 	  const verifyUser = async () =>{
-// 		  if(!cookies.jwt){
-// 			  navigate("/login");
-// 		  } else {
-// 			const { data } = await axios.post(
-// 				"http://localhost:8080/api/",{}, {withCredentials:true}
-// 				);
-// 				if(!data.status){
-// 					removeCookie("jwt")
-// 					navigate("/login")
-// 				}
-// 		  }
-// 	  };
-// 	  verifyUser()
-//   }, [cookies,navigate,removeCookie])
+  const [cookies, setCookie, removeCookie] = useCookies([]);
+  //   useEffect(()=> {
+  // 	  const verifyUser = async () =>{
+  // 		  if(!cookies.jwt){
+  // 			  navigate("/login");
+  // 		  } else {
+  // 			const { data } = await axios.post(
+  // 				"http://localhost:8080/api/",{}, {withCredentials:true}
+  // 				);
+  // 				if(!data.status){
+  // 					removeCookie("jwt")
+  // 					navigate("/login")
+  // 				}
+  // 		  }
+  // 	  };
+  // 	  verifyUser()
+  //   }, [cookies,navigate,removeCookie])
 
-  
   const logOut = () => {
-    removeCookie("jwt")
-   navigate('/register')
-
-  }
+    removeCookie("jwt");
+    navigate("/register");
+  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -73,7 +71,7 @@ const ResponsiveAppBar = () => {
     setCartItems(totalItems);
   }, [totalItems]);
   return (
-    <AppBar position="sticky">
+    <AppBar position="sticky" sx={{ backgroundColor: "black" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <SurfingIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -126,44 +124,22 @@ const ResponsiveAppBar = () => {
             >
               <MenuItem key="surf-boards" onClick={handleCloseNavMenu}>
                 <Typography textAlign="center" component="a" href="/surfboards">
-                  Surf boards
+                  Surfboards
                 </Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography
-                  textAlign="center"
-                  component="a"
-                  href="/shopping-cart"
-                >
-                  Shopping Cart
+                <Typography textAlign="center" component="a" href="/boogie">
+                  Boogie Boards
                 </Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography
-                  textAlign="center"
-                  component="a"
-                  href="/register"
-                >
-                  Register
-                </Typography>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Typography
-                  textAlign="center"
-                  component="a"
-                  href="/login"
-                >
-                  Login
+                <Typography textAlign="center" component="a" href="/fins">
+                  Surfboard Fins
                 </Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
                 <Typography textAlign="center" component="a" href="/about-us">
                   About us
-                </Typography>
-              </MenuItem>
-              <MenuItem onClick={logOut}>
-                <Typography textAlign="center" component="a">
-                  Log Out
                 </Typography>
               </MenuItem>
             </Menu>
@@ -173,7 +149,7 @@ const ResponsiveAppBar = () => {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -194,23 +170,23 @@ const ResponsiveAppBar = () => {
               component="a"
               href="/surfboards"
             >
-              Surf Boards
+              Surfboards
             </Button>
             <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
               component="a"
-              href="/register"
+              href="/boogie"
             >
-              Register
+              Boogie Boards
             </Button>
             <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
               component="a"
-              href="/login"
+              href="/fins"
             >
-              Login
+              Surfboard Fins
             </Button>
             <Button
               onClick={handleCloseNavMenu}
@@ -220,16 +196,7 @@ const ResponsiveAppBar = () => {
             >
               About Us
             </Button>
-            <Button
-              onClick={logOut}
-              sx={{ my: 2, color: "white", display: "block" }}
-              component="a"
-              
-            >
-              Log Out
-            </Button>
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Button href="/shopping-cart" onClick={handleCloseNavMenu}>
               <Badge badgeContent={cartItems} color="secondary">
@@ -260,11 +227,21 @@ const ResponsiveAppBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem key="login" onClick={handleCloseUserMenu}>
+                <Typography textAlign="center" component="a" href="/login">
+                  Login
+                </Typography>
+              </MenuItem>
+              <MenuItem key="register" onClick={handleCloseUserMenu}>
+                <Typography textAlign="center" component="a" href="/register">
+                  Register
+                </Typography>
+              </MenuItem>
+              <MenuItem key="logout" onClick={handleCloseUserMenu}>
+                <Typography textAlign="center" component="a" href="/">
+                  Log Out
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

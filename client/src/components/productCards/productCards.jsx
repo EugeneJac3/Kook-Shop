@@ -9,7 +9,8 @@ import { useCart } from "react-use-cart";
 import { CartContext } from "../../helper/Context";
 import Box from "@mui/material/Box";
 import Modal from "react-modal";
-import ModalContent from "../ModalContent.jsx";
+import ModalContent from "../modalContent/ModalContent.jsx";
+import CloseIcon from "@mui/icons-material/Close";
 
 const customStyles = {
   content: {
@@ -19,6 +20,7 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    borderRadius: "30px",
   },
 };
 
@@ -46,24 +48,23 @@ export default function ProductCards({ products }) {
           sx={{ maxWidth: 255, margin: "10px" }}
           key={product._id}
         >
-          <CardActionArea>
+          <CardActionArea onClick={() => openModal(product)}>
             <CardMedia
               component="img"
-              height="400px"
+              height="100%"
               width="100%"
               image={product.imgURL}
               alt={product.name}
-              onClick={() => openModal(product)}
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 {product.name}
               </Typography>
-              <Typography variant="body1" color="text.secondary">
+              <Typography variant="body1" color="primary">
                 Brand: {product.brand}
               </Typography>
 
-              <Typography variant="body1" color="text.secondary">
+              <Typography variant="body1" color="secondary">
                 Price: ${product.price}
               </Typography>
             </CardContent>
@@ -89,8 +90,10 @@ export default function ProductCards({ products }) {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <button onClick={closeModal}>close</button>
-        <div>Product Info Card</div>
+        <Box className="modalContainer">
+          <CloseIcon className="modalClose" onClick={closeModal} />
+        </Box>
+
         <ModalContent product={selectedProduct} />
       </Modal>
     </Box>

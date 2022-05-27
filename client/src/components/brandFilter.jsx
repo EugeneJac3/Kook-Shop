@@ -4,6 +4,8 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { useState } from "react";
+import Box from "@mui/material/Box";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -48,12 +50,14 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function DropdownFilter({
+export default function BrandFilter({
   originalProducts,
   setProducts,
   productItems,
 }) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedBrand, setSelectedBrand] = useState("Filter Brands");
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -64,6 +68,7 @@ export default function DropdownFilter({
 
   const filterProduct = (curcat) => {
     const newProduct = originalProducts.filter((newVal) => {
+      setSelectedBrand("Brand: " + curcat);
       return newVal.brand === curcat;
       // comparing brand for displaying data
     });
@@ -72,12 +77,13 @@ export default function DropdownFilter({
   };
 
   const selectAll = () => {
+    setSelectedBrand("Filter Brands");
     setProducts(originalProducts);
     handleClose();
   };
 
   return (
-    <div>
+    <Box sx={{ margin: "10px" }}>
       <Button
         id="demo-customized-button"
         aria-controls={open ? "demo-customized-menu" : undefined}
@@ -88,8 +94,9 @@ export default function DropdownFilter({
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
       >
-        Filter Brands
+        {selectedBrand}
       </Button>
+
       <StyledMenu
         id="demo-customized-menu"
         MenuListProps={{
@@ -121,6 +128,6 @@ export default function DropdownFilter({
           All Brands
         </MenuItem>
       </StyledMenu>
-    </div>
+    </Box>
   );
 }

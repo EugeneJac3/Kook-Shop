@@ -14,12 +14,6 @@ import FinProducts from "./components/finProducts";
 import BoogieProducts from "./components/boogieProducts";
 
 function App() {
-  const navigate = useNavigate();
-
-  const logOut = () => {
-    navigate("/register");
-  };
-
   const [cartItems, setCartItems] = useState("");
 
   return (
@@ -34,7 +28,6 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/shopping-cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/secret" element={<Secret />} />
         </Routes>
       </CartProvider>
     </CartContext.Provider>

@@ -58,7 +58,7 @@ exports.register = async (req, res, next) => {
 		
 		const { email, password } = req.body;
 		if(password){
-			
+			// Look at middleware example to fix
 		const hash = bcrypt.hashSync(password, saltRounds)
 		const user = await User.create({
 			 email, 
@@ -67,7 +67,7 @@ exports.register = async (req, res, next) => {
 			console.log("registration user", user)
 		
 		res.status(201).json({ user: user._id, created: true });} else {
-			//Figure this out!!!
+			//figure this out
 			console.log("password required")
 		}
 		
@@ -90,10 +90,10 @@ exports.login = async (req, res, next) => {
 	const comparePass = bcrypt.compareSync(password,user.password)
 	
 	  if (comparePass) {
-		  console.log("bcrypt", comparePass)
+		//   console.log("bcrypt", comparePass)
 		const token = jwt.sign(
 		  {
-			data: user.email,
+			email,
 			id: user._id
 		  },
 		  process.env.KEY,

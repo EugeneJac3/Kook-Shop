@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
+import {useCookies} from 'react-cookie'
+import axios from "axios"
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -16,6 +18,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Badge } from "@mui/material";
 import { CartContext } from "./../helper/Context";
 import { useCart } from "react-use-cart";
+import { useNavigate } from "react-router-dom";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -23,6 +26,32 @@ const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const { totalItems } = useCart();
+  const navigate = useNavigate();
+
+  const [cookies,setCookie,removeCookie] = useCookies([]);
+//   useEffect(()=> {
+// 	  const verifyUser = async () =>{
+// 		  if(!cookies.jwt){
+// 			  navigate("/login");
+// 		  } else {
+// 			const { data } = await axios.post(
+// 				"http://localhost:8080/api/",{}, {withCredentials:true}
+// 				);
+// 				if(!data.status){
+// 					removeCookie("jwt")
+// 					navigate("/login")
+// 				}
+// 		  }
+// 	  };
+// 	  verifyUser()
+//   }, [cookies,navigate,removeCookie])
+
+  
+  const logOut = () => {
+    removeCookie("jwt")
+   navigate('/register')
+
+  }
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -132,8 +161,8 @@ const ResponsiveAppBar = () => {
                   About us
                 </Typography>
               </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center" component="a" href="/register">
+              <MenuItem onClick={logOut}>
+                <Typography textAlign="center" component="a">
                   Log Out
                 </Typography>
               </MenuItem>
@@ -192,10 +221,10 @@ const ResponsiveAppBar = () => {
               About Us
             </Button>
             <Button
-              onClick={handleCloseNavMenu}
+              onClick={logOut}
               sx={{ my: 2, color: "white", display: "block" }}
               component="a"
-              href="/register"
+              
             >
               Log Out
             </Button>

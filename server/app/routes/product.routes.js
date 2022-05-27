@@ -1,11 +1,13 @@
+const {checkUser} = require("../middleware/AuthMiddleware")
+
 module.exports = (app) => {
 	const products = require("../controllers/product.controller.js");
 
 	var router = require("express").Router();
 
 
-	//Credentials route
-	router.post("/")
+	// //Credentials route
+	// router.post("/", checkUser)
 	//Register route
 	router.post("/register", products.register);
 	//Register route

@@ -13,11 +13,6 @@ import SurfboardProducts from "./components/surfboardProducts";
 
 function App() {
 
-	const navigate = useNavigate();
-
-	const logOut = () => {
-		navigate("/register")
-	}
 
   const [cartItems, setCartItems] = useState("");
 
@@ -31,7 +26,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/shopping-cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/secret" element={<Secret />} />
+
         </Routes>
       </CartProvider>
     </CartContext.Provider>

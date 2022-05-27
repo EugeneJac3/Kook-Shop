@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
@@ -7,6 +7,7 @@ import axios from "axios";
 export default function Login() {
 	const [cookies] = useCookies([])
 	const navigate = useNavigate();
+	const {id} = useParams()
 
 	useEffect(() => {
 		if (cookies.jwt) {

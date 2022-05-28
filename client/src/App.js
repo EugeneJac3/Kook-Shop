@@ -5,13 +5,16 @@ import { CartProvider } from "react-use-cart";
 import ProductsList from "./components/ProductsList";
 import Register from "./components/users/Register";
 import Login from "./components/users/Login";
-import Secret from "./components/users/Secret";
 import ResponsiveAppBar from "./components/navBar";
 import { CartContext } from "./helper/Context";
 import Cart from "./components/cart/Cart";
 import SurfboardProducts from "./components/surfboardProducts";
 import FinProducts from "./components/finProducts";
 import BoogieProducts from "./components/boogieProducts";
+import AboutUs from "./components/aboutUs";
+import Footer from "./components/footer/footer";
+import "./App.css";
+import Box from "@mui/material/Box";
 
 function App() {
   const [cartItems, setCartItems] = useState("");
@@ -25,10 +28,12 @@ function App() {
           <Route path="/surfboards" element={<SurfboardProducts />} />
           <Route path="/fins" element={<FinProducts />} />
           <Route path="/boogie" element={<BoogieProducts />} />
+          <Route path="/about-us" element={<AboutUs />} />
           <Route path="/register" element={<Register />} />
           <Route path="/shopping-cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
         </Routes>
+        <Footer />
       </CartProvider>
     </CartContext.Provider>
   );

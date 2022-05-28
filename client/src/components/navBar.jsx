@@ -237,7 +237,7 @@ const ResponsiveAppBar = () => {
                   Register
                 </Typography>
               </MenuItem>
-              <MenuItem key="logout" onClick={handleCloseUserMenu}>
+              <MenuItem key="logout" onClick={logOut}>
                 <Typography textAlign="center" component="a" href="/">
                   Log Out
                 </Typography>

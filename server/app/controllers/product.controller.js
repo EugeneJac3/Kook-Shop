@@ -3,6 +3,9 @@ const jwt = require("jsonwebtoken");
 const Product = db.products;
 const User = db.users;
 const bcrypt = require("bcrypt");
+const stripe = require("stripe")(
+  "sk_test_51L0VFOBKL98zZMtXBazjGvk1OCQSkxb38tGnumDnIXGQRNliyNW9Xt4Pp2o8KSkEaxsxVWOMbQt5da3YdXma7Qlh00avylUTBA"
+);
 require("dotenv").config();
 const saltRounds = bcrypt.genSaltSync(Number(process.env.SALT_FACTOR));
 console.log("user", User);
@@ -103,4 +106,28 @@ exports.login = async (req, res, next) => {
   } else {
     res.send("Sorry, wrong username/password");
   }
+};
+
+exports.checkout = async (req, res) => {
+  const { cartTotal } = req.body;
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: "Grand Total",
+          },
+          unit_amount_decimal: cartTotal * 100,
+        },
+        quantity: 1,
+      },
+    ],
+    mode: "payment",
+    success_url: `http://localhost:8081/shopping-cart`,
+    cancel_url: `http://localhost:8081/shopping-cart`,
+  });
+
+  res.json({ url: session.url });
 };

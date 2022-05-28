@@ -15,15 +15,9 @@ import {
 } from "@mui/material";
 import { useCart } from "react-use-cart";
 import * as React from "react";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
+import axios from "axios";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Avatar from "@mui/material/Avatar";
-import ImageIcon from "@mui/icons-material/Image";
-import WorkIcon from "@mui/icons-material/Work";
-import BeachAccessIcon from "@mui/icons-material/BeachAccess";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
@@ -45,6 +39,24 @@ export default function Cart() {
 	});
 
 	if (isEmpty) return <p>Your cart is empty</p>;
+
+	const handleCartSubmit = async (e) => {
+		e.preventDefault();
+		try {
+			const data = await axios.post(
+				"http://localhost:8080/api/create-checkout-session",
+				{ cartTotal },
+				{
+					headers: { "Content-Type": "application/json" },
+				}
+			);
+			console.log(data);
+			const body = await data.data;
+			window.location.href = body.url;
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
 	return (
 		<>
@@ -135,10 +147,21 @@ export default function Cart() {
 							</TableCell>
 							<TableCell align="right">{formatter.format(cartTotal)}</TableCell>
 							<TableCell>
-								<Button variant="text" href="/">
+								{/* <form
+									onSubmit={handleCartSubmit} */}
+								{/* // action="http://localhost:8080/api/create-checkout-session" //
+								method="POST" */}
+								{/* > */}
+								<Button
+									variant="text"
+									type="submit"
+									id="checkout-button"
+									onClick={(e) => handleCartSubmit(e)}
+								>
 									Checkout
 									<ArrowForwardIosIcon fontSize="small" sx={{ ml: 1 }} />
 								</Button>
+								{/* </form> */}
 							</TableCell>
 						</TableRow>
 					</TableBody>

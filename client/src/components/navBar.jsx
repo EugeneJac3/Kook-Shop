@@ -238,7 +238,9 @@ const ResponsiveAppBar = () => {
                 </Typography>
               </MenuItem>
               <MenuItem key="logout" onClick={logOut}>
+
                 <Typography textAlign="center" component="a" href="/login">
+
                   Log Out
                 </Typography>
               </MenuItem>

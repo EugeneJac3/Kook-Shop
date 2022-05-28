@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import Card from '@mui/material/Card';
+import "./User.css"
+
+
 
 export default function Register() {
 	const navigate = useNavigate();
+
 	const [values, setValues] = useState({
 		email: "",
 		password: "",
@@ -29,7 +34,7 @@ export default function Register() {
 					console.log("data.errors",data.errors)
 				 const {email, password} = data.errors;
 				 if(email) generateError(email);
-				 else if (password) alert("Needs Password");
+				 else if (password) alert("Needs");
 				}  else {
 					navigate("/login")
 				}
@@ -40,8 +45,10 @@ export default function Register() {
 	};
 
 	return (
-		<div>
-			<h2>Register Account</h2>
+		<div className="regBody">
+		<div className="container">
+		<h2>Register Account</h2>
+	
 			<form onSubmit={(e) => handleSubmit(e)}>
 				<div>
 					<label htmlFor="email">Email</label>
@@ -70,7 +77,11 @@ export default function Register() {
 					Already have an account? <Link to="/login">Login</Link>
 				</span>
 			</form>
+			
 			<ToastContainer />
-		</div>
+			</div>
+			</div>
 	);
 }
+
+

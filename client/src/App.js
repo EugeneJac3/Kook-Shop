@@ -11,10 +11,14 @@ import Cart from "./components/cart/Cart";
 import SurfboardProducts from "./components/surfboardProducts";
 import FinProducts from "./components/finProducts";
 import BoogieProducts from "./components/boogieProducts";
+
+import "react-toastify/dist/ReactToastify.css"
+
 import AboutUs from "./components/aboutUs";
 import Footer from "./components/footer/footer";
 import "./App.css";
 import Box from "@mui/material/Box";
+
 
 function App() {
   const [cartItems, setCartItems] = useState("");

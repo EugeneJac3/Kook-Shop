@@ -12,6 +12,7 @@ import Cart from "./components/cart/Cart";
 import SurfboardProducts from "./components/surfboardProducts";
 import FinProducts from "./components/finProducts";
 import BoogieProducts from "./components/boogieProducts";
+import "react-toastify/dist/ReactToastify.css"
 
 function App() {
   const [cartItems, setCartItems] = useState("");

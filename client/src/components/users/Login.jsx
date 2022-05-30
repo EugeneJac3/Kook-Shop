@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import { UserContext } from "../../helper/UserContext";
 
 export default function Login() {
   const [cookies] = useCookies([]);
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     if (cookies.jwt) {
@@ -37,13 +38,15 @@ export default function Login() {
           withCredentials: true,
         }
       );
-      console.log("user data", data);
       if (data) {
         if (data.errors) {
           const { email, password } = data.errors;
           if (email) generateError(email);
           else if (password) generateError(password);
         } else {
+          setUser(data.user);
+          console.log("data.user", data.user);
+          console.log("setUser", user);
           navigate("/");
         }
       }

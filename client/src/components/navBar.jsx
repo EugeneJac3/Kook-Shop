@@ -243,7 +243,7 @@ const ResponsiveAppBar = () => {
                   Register
                 </Typography>
               </MenuItem>
-              <MenuItem key="login" onClick={handleCloseUserMenu}>
+              <MenuItem key="orderhistory" onClick={handleCloseUserMenu}>
                 <Typography textAlign="center" component="a" href="/orders">
                   Order History
                 </Typography>

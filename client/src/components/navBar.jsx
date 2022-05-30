@@ -243,10 +243,13 @@ const ResponsiveAppBar = () => {
                   Register
                 </Typography>
               </MenuItem>
+              <MenuItem key="orderhistory" onClick={handleCloseUserMenu}>
+                <Typography textAlign="center" component="a" href="/orders">
+                  Order History
+                </Typography>
+              </MenuItem>
               <MenuItem key="logout" onClick={logOut}>
-
                 <Typography textAlign="center" component="a" href="/login">
-
                   Log Out
                 </Typography>
               </MenuItem>

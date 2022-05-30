@@ -27,6 +27,7 @@ function App() {
     <CartContext.Provider value={{ cartItems, setCartItems }}>
       <CartProvider>
         <ResponsiveAppBar />
+
         <Routes>
           <Route path="/" element={<ProductsList />} />
           <Route path="/surfboards" element={<SurfboardProducts />} />

@@ -20,7 +20,12 @@ const ModalContent = ({ product }) => {
       </Box>
       <Card sx={{ maxWidth: 500 }}>
         <CardContent>
-          <Typography gutterBottom variant="h4" component="div">
+          <Typography
+            gutterBottom
+            variant="h4"
+            component="div"
+            sx={{ fontFamily: "bradley hand" }}
+          >
             {product.name}
           </Typography>
           <Typography variant="subtitle1" color="primary">

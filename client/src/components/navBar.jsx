@@ -71,21 +71,20 @@ const ResponsiveAppBar = () => {
     setCartItems(totalItems);
   }, [totalItems]);
   return (
-    <AppBar position="sticky" sx={{ backgroundColor: "black" }}>
+    <AppBar position="sticky" sx={{ backgroundColor: "#0e0b5c" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <SurfingIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
             component="a"
             href="/"
             sx={{
-              mr: 2,
+              mr: 3,
               display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
+              fontFamily: "chalkduster",
+              fontSize: "30px",
+              letterSpacing: ".1rem",
               color: "inherit",
               textDecoration: "none",
             }}
@@ -122,6 +121,11 @@ const ResponsiveAppBar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
+              <MenuItem key="home" onClick={handleCloseUserMenu}>
+                <Typography textAlign="center" component="a" href="/">
+                  Home
+                </Typography>
+              </MenuItem>
               <MenuItem key="surf-boards" onClick={handleCloseNavMenu}>
                 <Typography textAlign="center" component="a" href="/surfboards">
                   Surfboards
@@ -144,29 +148,16 @@ const ResponsiveAppBar = () => {
               </MenuItem>
             </Menu>
           </Box>
-          <SurfingIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            Kook Boards
-          </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Button
               onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "block" }}
+              sx={{
+                my: 2,
+                color: "white",
+                display: "block",
+                fontFamily: "chalkduster",
+              }}
               component="a"
               href="/surfboards"
             >
@@ -174,7 +165,12 @@ const ResponsiveAppBar = () => {
             </Button>
             <Button
               onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "block" }}
+              sx={{
+                my: 2,
+                color: "white",
+                display: "block",
+                fontFamily: "chalkduster",
+              }}
               component="a"
               href="/boogie"
             >
@@ -182,7 +178,12 @@ const ResponsiveAppBar = () => {
             </Button>
             <Button
               onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "block" }}
+              sx={{
+                my: 2,
+                color: "white",
+                display: "block",
+                fontFamily: "chalkduster",
+              }}
               component="a"
               href="/fins"
             >
@@ -190,7 +191,12 @@ const ResponsiveAppBar = () => {
             </Button>
             <Button
               onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "block" }}
+              sx={{
+                my: 2,
+                color: "white",
+                display: "block",
+                fontFamily: "chalkduster",
+              }}
               component="a"
               href="/about-us"
             >
@@ -208,7 +214,7 @@ const ResponsiveAppBar = () => {
             </Button>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="K" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu

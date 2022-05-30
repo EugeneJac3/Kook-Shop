@@ -12,7 +12,11 @@ export default function CategoryCards() {
   return (
     <Box
       className="container"
-      sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
+      }}
     >
       <Link href="/surfboards">
         <Card sx={{ maxWidth: 345, margin: "20px" }}>
@@ -28,9 +32,18 @@ export default function CategoryCards() {
               sx={{
                 display: "flex",
                 justifyContent: "center",
+                height: "70px",
               }}
             >
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                sx={{
+                  fontFamily: "bradley hand",
+                  fontSize: "35px",
+                }}
+              >
                 Surfboards
               </Typography>
             </CardContent>
@@ -50,9 +63,18 @@ export default function CategoryCards() {
               sx={{
                 display: "flex",
                 justifyContent: "center",
+                height: "70px",
               }}
             >
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                sx={{
+                  fontFamily: "bradley hand",
+                  fontSize: "35px",
+                }}
+              >
                 Boogie Boards
               </Typography>
             </CardContent>
@@ -72,9 +94,18 @@ export default function CategoryCards() {
               sx={{
                 display: "flex",
                 justifyContent: "center",
+                height: "70px",
               }}
             >
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                sx={{
+                  fontFamily: "bradley hand",
+                  fontSize: "35px",
+                }}
+              >
                 Surfboard Fins
               </Typography>
             </CardContent>

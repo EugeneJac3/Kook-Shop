@@ -51,7 +51,8 @@ export default function Login() {
 	};
 
 	return (
-		<div>
+		<div className="logBody">
+		<div className="container">
 			<h2>Login Account</h2>
 			<form onSubmit={(e) => handleSubmit(e)}>
 				<div>
@@ -81,6 +82,7 @@ export default function Login() {
 					Already have an account? <Link to="/register">Register</Link>
 				</span>
 			</form>
+		</div>
 		</div>
 	);
 }

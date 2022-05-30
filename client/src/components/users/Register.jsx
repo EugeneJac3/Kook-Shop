@@ -46,7 +46,7 @@ export default function Register() {
 
 	return (
 		<div className="regBody">
-		<div className="container">
+		<div className="Usercontainer">
 		<h2>Register Account</h2>
 	
 			<form onSubmit={(e) => handleSubmit(e)}>

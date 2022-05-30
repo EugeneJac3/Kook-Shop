@@ -18,12 +18,16 @@ import AboutUs from "./components/aboutUs";
 import Footer from "./components/footer/footer";
 import "./App.css";
 import Box from "@mui/material/Box";
+import { UserContext } from "./helper/UserContext";
 
 
 function App() {
+  const [user, setUser] = useState("");
   const [cartItems, setCartItems] = useState("");
-
+  
+  console.log("app user", user)
   return (
+    <UserContext.Provider value={{user, setUser}}>
     <CartContext.Provider value={{ cartItems, setCartItems }}>
       <CartProvider>
         <ResponsiveAppBar />
@@ -40,6 +44,7 @@ function App() {
         <Footer />
       </CartProvider>
     </CartContext.Provider>
+    </UserContext.Provider>
   );
 }
 

@@ -30,4 +30,26 @@ body {
 
 .socialIcon img {
   margin: 5px;
+  margin-top: 8px;
+}
+
+@media only screen and (max-width: 600px) {
+  .copywriteFooter {
+    font-size: 15px;
+    margin-top: 12px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .copywriteFooter {
+    font-size: 15px;
+  }
+
+  .footer {
+    height: 4rem;
+  }
+
+  .socialFooter {
+    margin-top: 10px;
+  }
 }

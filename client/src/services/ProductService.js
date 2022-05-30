@@ -1,9 +1,9 @@
 import http from "../http-common";
 const getAll = () => {
-  return http.get("/products");
+	return http.get("/products");
 };
 
 const ProductService = {
-  getAll,
+	getAll,
 };
 export default ProductService;

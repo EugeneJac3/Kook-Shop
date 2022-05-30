@@ -15,6 +15,8 @@ module.exports = (app) => {
 	router.get("/products", products.findAll);
 	// Make Stripe checkout session
 	router.post("/create-checkout-session", products.checkout);
+	// Make Stripe checkout session
+	router.post("/place-order", products.placeOrder);
 
 	app.use("/api", router);
 };

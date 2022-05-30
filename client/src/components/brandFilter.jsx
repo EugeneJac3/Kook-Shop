@@ -93,6 +93,7 @@ export default function BrandFilter({
         disableElevation
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
+        sx={{ backgroundColor: "#80cbc4", color: "black" }}
       >
         {selectedBrand}
       </Button>

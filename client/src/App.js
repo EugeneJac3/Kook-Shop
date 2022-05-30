@@ -12,7 +12,7 @@ import SurfboardProducts from "./components/surfboardProducts";
 import FinProducts from "./components/finProducts";
 import BoogieProducts from "./components/boogieProducts";
 
-import "react-toastify/dist/ReactToastify.css"
+import "react-toastify/dist/ReactToastify.css";
 
 import AboutUs from "./components/aboutUs";
 import Footer from "./components/footer/footer";

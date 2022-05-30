@@ -74,7 +74,9 @@ export default function Register() {
               }
             />
           </div>
-          <button type="submit">Submit</button>
+          <button className="userButton" type="submit">
+            Submit
+          </button>
           <span>
             Already have an account? <Link to="/login">Login</Link>
           </span>

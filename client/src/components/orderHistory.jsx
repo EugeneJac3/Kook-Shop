@@ -16,7 +16,9 @@ const OrderHistory = () => {
       .then((response) => {
         console.log("all orders", response.data);
         const allOrders = response.data;
-        const userOrders = allOrders.filter((order) => order.userID === "123");
+        const userOrders = allOrders.filter(
+          (order) => order.userID === "123456"
+        );
 
         setAllOrders(userOrders);
       })

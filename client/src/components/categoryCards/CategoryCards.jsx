@@ -11,7 +11,7 @@ import Link from "@mui/material/Link";
 export default function CategoryCards() {
   return (
     <Box
-      className="container"
+      className="categoryContainer"
       sx={{
         display: "flex",
         flexWrap: "wrap",

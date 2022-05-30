@@ -79,7 +79,9 @@ export default function Login() {
               }
             />
           </div>
-          <button type="submit">Submit</button>
+          <button className="userButton" type="submit">
+            Submit
+          </button>
           <span>
             Already have an account? <Link to="/register">Register</Link>
           </span>

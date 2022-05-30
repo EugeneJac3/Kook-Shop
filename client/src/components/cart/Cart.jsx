@@ -24,14 +24,8 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Box, fontSize, fontWeight } from "@mui/system";
 
 export default function Cart() {
-	const {
-		isEmpty,
-		totalUniqueItems,
-		items,
-		cartTotal,
-		updateItemQuantity,
-		removeItem,
-	} = useCart();
+	const { isEmpty, items, cartTotal, updateItemQuantity, removeItem } =
+		useCart();
 	const formatter = new Intl.NumberFormat("en-US", {
 		style: "currency",
 		currency: "USD",

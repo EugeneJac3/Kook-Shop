@@ -127,7 +127,7 @@ exports.checkout = async (req, res) => {
 			},
 		],
 		mode: "payment",
-		success_url: `http://localhost:8081/successful`,
+		success_url: `http://localhost:8081/success`,
 		cancel_url: `http://localhost:8081/shopping-cart`,
 	});
 

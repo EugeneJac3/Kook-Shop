@@ -19,29 +19,31 @@ import Footer from "./components/footer/footer";
 import "./App.css";
 import Box from "@mui/material/Box";
 import Success from "./components/Success";
+import OrderHistory from "./components/orderHistory";
 
 function App() {
-	const [cartItems, setCartItems] = useState("");
+  const [cartItems, setCartItems] = useState("");
 
-	return (
-		<CartContext.Provider value={{ cartItems, setCartItems }}>
-			<CartProvider>
-				<ResponsiveAppBar />
-				<Routes>
-					<Route path="/" element={<ProductsList />} />
-					<Route path="/surfboards" element={<SurfboardProducts />} />
-					<Route path="/fins" element={<FinProducts />} />
-					<Route path="/boogie" element={<BoogieProducts />} />
-					<Route path="/about-us" element={<AboutUs />} />
-					<Route path="/register" element={<Register />} />
-					<Route path="/shopping-cart" element={<Cart />} />
-					<Route path="/login" element={<Login />} />
-					<Route path="/success" element={<Success />} />
-				</Routes>
-				<Footer />
-			</CartProvider>
-		</CartContext.Provider>
-	);
+  return (
+    <CartContext.Provider value={{ cartItems, setCartItems }}>
+      <CartProvider>
+        <ResponsiveAppBar />
+        <Routes>
+          <Route path="/" element={<ProductsList />} />
+          <Route path="/surfboards" element={<SurfboardProducts />} />
+          <Route path="/fins" element={<FinProducts />} />
+          <Route path="/boogie" element={<BoogieProducts />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/shopping-cart" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/success" element={<Success />} />
+          <Route path="/orders" element={<OrderHistory />} />
+        </Routes>
+        <Footer />
+      </CartProvider>
+    </CartContext.Provider>
+  );
 }
 
 export default App;

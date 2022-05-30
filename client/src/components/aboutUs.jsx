@@ -12,8 +12,13 @@ import CardActions from "@mui/material/CardActions";
 export default function AboutUs() {
   return (
     <Box
-      className="container"
-      sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+      className="dev-container"
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        marginTop: "50px",
+      }}
     >
       <Card sx={{ maxWidth: 345, margin: "20px" }}>
         <CardActionArea>

@@ -71,7 +71,7 @@ const ResponsiveAppBar = () => {
     setCartItems(totalItems);
   }, [totalItems]);
   return (
-    <AppBar position="sticky" sx={{ backgroundColor: "black" }}>
+    <AppBar position="sticky" sx={{ backgroundColor: "#0e0b5c" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography

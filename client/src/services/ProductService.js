@@ -1,14 +1,18 @@
 import http from "../http-common";
 const getAll = () => {
-  return http.get("/products");
+	return http.get("/products");
 };
 
 const getAllOrders = () => {
-  return http.get("/orders");
+	return http.get("/orders");
+};
+const postOrder = () => {
+	return http.post("/place-order");
 };
 
 const ProductService = {
-  getAll,
-  getAllOrders,
+	postOrder,
+	getAll,
+	getAllOrders,
 };
 export default ProductService;

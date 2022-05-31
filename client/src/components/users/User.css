@@ -31,7 +31,7 @@
 	padding: 1rem 3rem;
 	padding-bottom: 2rem;
 	border-radius: 0.5rem;
-	border-top: rgb(0, 0, 0) 0.5rem solid;
+	border-top: rgb(0, 47, 108) 0.5rem solid;
 	min-width: 400px;
 	max-width: 400px;
 	width: 30vw;
@@ -60,8 +60,8 @@ input {
 	font-size: 1.1rem;
 }
 
-button {
-	background-color: rgb(0, 0, 0);
+.userButton {
+	background-color: rgb(0, 47, 108);
 	color: white;
 	border: none;
 	padding: 0.5rem;

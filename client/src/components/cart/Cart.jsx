@@ -1,7 +1,6 @@
 import {
 	Button,
 	ButtonGroup,
-	Divider,
 	Fab,
 	TableCell,
 	tableCellClasses,
@@ -11,7 +10,6 @@ import {
 	TableContainer,
 	TableHead,
 	TableRow,
-	Paper,
 } from "@mui/material";
 import { useCart } from "react-use-cart";
 import * as React from "react";
@@ -20,8 +18,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Avatar from "@mui/material/Avatar";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-
-import { Box, fontSize, fontWeight } from "@mui/system";
 
 export default function Cart() {
 	const { isEmpty, items, cartTotal, updateItemQuantity, removeItem } =
@@ -36,15 +32,16 @@ export default function Cart() {
 
 	const handleCartSubmit = async (e) => {
 		e.preventDefault();
+		const newCartTotal = cartTotal.toFixed(2) * 100;
+		console.log(newCartTotal);
 		try {
 			const data = await axios.post(
 				"http://localhost:8080/api/create-checkout-session",
-				{ cartTotal },
+				{ newCartTotal },
 				{
 					headers: { "Content-Type": "application/json" },
 				}
 			);
-			console.log(data);
 			const body = await data.data;
 			window.location.href = body.url;
 		} catch (err) {

@@ -27,6 +27,20 @@ exports.findAll = (req, res) => {
 		});
 };
 
+// Retrieve all Products from the database.
+exports.findAllOrders = (req, res) => {
+	Order.find()
+		.then((data) => {
+			res.send(data);
+		})
+		.catch((err) => {
+			res.status(500).send({
+				message:
+					err.message || "Some error occurred while retrieving products.",
+			});
+		});
+};
+
 const maxAge = 3 * 24 * 60 * 60;
 
 // const createToken = (id) => {
@@ -111,7 +125,9 @@ exports.login = async (req, res, next) => {
 };
 
 exports.checkout = async (req, res) => {
-	const { cartTotal } = req.body;
+	const { newCartTotal } = req.body;
+	const finalCartTotal = newCartTotal.toFixed(0);
+	console.log(finalCartTotal);
 	const session = await stripe.checkout.sessions.create({
 		line_items: [
 			{
@@ -121,7 +137,7 @@ exports.checkout = async (req, res) => {
 					product_data: {
 						name: "Grand Total",
 					},
-					unit_amount_decimal: cartTotal * 100,
+					unit_amount_decimal: finalCartTotal,
 				},
 				quantity: 1,
 			},
@@ -137,6 +153,7 @@ exports.checkout = async (req, res) => {
 exports.placeOrder = async (req, res, next) => {
 	try {
 		const { userID, items, cartTotal, totalItems } = req.body;
+		console.log("Cart Total for placeOrder route:", cartTotal);
 		if (items) {
 			const order = await Order.create({
 				userID,

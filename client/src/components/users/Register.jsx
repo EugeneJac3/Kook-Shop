@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import Card from "@mui/material/Card";
 import "./User.css";
 
 export default function Register() {
@@ -74,7 +73,9 @@ export default function Register() {
 							}
 						/>
 					</div>
-					<button type="submit">Submit</button>
+					<button className="userButton" type="submit">
+						Submit
+					</button>
 					<span>
 						Already have an account? <Link to="/login">Login</Link>
 					</span>

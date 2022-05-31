@@ -1,14 +1,21 @@
 import { Button, Container } from "@mui/material";
 import axios from "axios";
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useCart } from "react-use-cart";
+import { UserContext } from "../helper/UserContext";
 
 export default function Success() {
-	const [orderSent, setOrderSent] = useState(false);
-
+	const [orderSent] = useState(false);
 	const { emptyCart, items, cartTotal, totalItems } = useCart();
+	const { user } = useContext(UserContext);
 
+	// const formatter = new Intl.NumberFormat("en-US", {
+	// 	style: "currency",
+	// 	currency: "USD",
+	// 	minimumFractionDigits: 2,
+	// });
+	console.log("Success page user is", user);
 	const orderData = JSON.stringify({
 		userID: "123456",
 		items: items,

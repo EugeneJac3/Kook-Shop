@@ -7,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -46,7 +47,7 @@ const ResponsiveAppBar = () => {
 
 	const logOut = () => {
 		removeCookie("jwt");
-		navigate("/register");
+		navigate("/login");
 	};
 
 	const handleOpenNavMenu = (event) => {
@@ -211,9 +212,14 @@ const ResponsiveAppBar = () => {
 							</Badge>
 						</Button>
 						<Tooltip title="Open settings">
-							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+							{/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 								<Avatar alt="K" src="/static/images/avatar/2.jpg" />
-							</IconButton>
+							</IconButton> */}
+
+							<AccountCircleIcon
+								onClick={handleOpenUserMenu}
+								sx={{ p: 0, fontSize: "35px", cursor: "pointer" }}
+							></AccountCircleIcon>
 						</Tooltip>
 						<Menu
 							sx={{ mt: "45px" }}

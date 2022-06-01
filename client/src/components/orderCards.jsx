@@ -47,7 +47,11 @@ export default function OrderCards({ orders }) {
 			sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
 		>
 			{orders.map((order, index) => (
-				<Card className="orderCard" sx={{ minwidth: 275, margin: "20px" }}>
+				<Card
+					className="orderCard"
+					key={index}
+					sx={{ minwidth: 275, margin: "20px" }}
+				>
 					<CardContent>
 						<Typography variant="body1" component="h1">
 							Order ID: {order._id}

@@ -4,11 +4,16 @@ import * as React from "react";
 import { useEffect, useState, useContext } from "react";
 import { useCart } from "react-use-cart";
 import { UserContext } from "../helper/UserContext";
+import jwt_decode from "jwt-decode";
+import { useCookies } from "react-cookie";
 
 export default function Success() {
 	const [orderSent] = useState(false);
-	const { emptyCart, items, cartTotal, totalItems } = useCart();
+	const { isEmpty, emptyCart, items, cartTotal, totalItems } = useCart();
 	const { user } = useContext(UserContext);
+	const [cookies] = useCookies(["jwt"]);
+	const decoded = jwt_decode(cookies.jwt);
+	const userID = decoded.id;
 
 	// const formatter = new Intl.NumberFormat("en-US", {
 	// 	style: "currency",
@@ -17,7 +22,7 @@ export default function Success() {
 	// });
 	console.log("Success page user is", user);
 	const orderData = JSON.stringify({
-		userID: "123456",
+		userID: userID,
 		items: items,
 		cartTotal: cartTotal,
 		totalItems: totalItems,
@@ -35,7 +40,7 @@ export default function Success() {
 	};
 
 	useEffect(() => {
-		if (orderSent === false) {
+		if (!isEmpty) {
 			async function postOrderData() {
 				try {
 					const response = await axios(orderPostConfig);

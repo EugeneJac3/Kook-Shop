@@ -18,250 +18,254 @@ import { Badge } from "@mui/material";
 import { CartContext } from "./../helper/Context";
 import { useCart } from "react-use-cart";
 import { useNavigate } from "react-router-dom";
-
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+import jwt_decode from "jwt-decode";
 
 const ResponsiveAppBar = () => {
-	const [anchorElNav, setAnchorElNav] = React.useState(null);
-	const [anchorElUser, setAnchorElUser] = React.useState(null);
-	const { totalItems } = useCart();
-	const navigate = useNavigate();
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { totalItems } = useCart();
+  const navigate = useNavigate();
 
-	const [cookies, setCookie, removeCookie] = useCookies([]);
-	//   useEffect(()=> {
-	// 	  const verifyUser = async () =>{
-	// 		  if(!cookies.jwt){
-	// 			  navigate("/login");
-	// 		  } else {
-	// 			const { data } = await axios.post(
-	// 				"http://localhost:8080/api/",{}, {withCredentials:true}
-	// 				);
-	// 				if(!data.status){
-	// 					removeCookie("jwt")
-	// 					navigate("/login")
-	// 				}
-	// 		  }
-	// 	  };
-	// 	  verifyUser()
-	//   }, [cookies,navigate,removeCookie])
+  const [cookies, setCookie, removeCookie] = useCookies(["jwt"]);
 
-	const logOut = () => {
-		removeCookie("jwt");
-		navigate("/login");
-	};
+  //   useEffect(() => {}, [cookies.jwt]);
 
-	const handleOpenNavMenu = (event) => {
-		setAnchorElNav(event.currentTarget);
-	};
-	const handleOpenUserMenu = (event) => {
-		setAnchorElUser(event.currentTarget);
-	};
+  //   console.log("initial cookies", cookies.jwt);
+  //   if (!cookies.jwt) {
+  //     console.log("no cookie right now");
+  //   } else if (cookies.jwt) {
+  //     console.log("cookie exists right now");
+  //   }
 
-	const handleCloseNavMenu = () => {
-		setAnchorElNav(null);
-	};
+  const logOut = () => {
+    removeCookie("jwt");
+    navigate("/login");
+  };
 
-	const handleCloseUserMenu = () => {
-		setAnchorElUser(null);
-	};
-	const { cartItems, setCartItems } = useContext(CartContext);
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
 
-	useEffect(() => {
-		setCartItems(totalItems);
-	}, [totalItems]);
-	return (
-		<AppBar position="sticky" sx={{ backgroundColor: "#0e0b5c" }}>
-			<Container maxWidth="xl">
-				<Toolbar disableGutters>
-					<Typography
-						variant="h6"
-						noWrap
-						component="a"
-						href="/"
-						sx={{
-							mr: 3,
-							display: { xs: "none", md: "flex" },
-							fontFamily: "chalkduster",
-							fontSize: "30px",
-							letterSpacing: ".1rem",
-							color: "inherit",
-							textDecoration: "none",
-						}}
-					>
-						Kook Boards
-					</Typography>
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
 
-					<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-						<IconButton
-							size="large"
-							aria-label="account of current user"
-							aria-controls="menu-appbar"
-							aria-haspopup="true"
-							onClick={handleOpenNavMenu}
-							color="inherit"
-						>
-							<MenuIcon />
-						</IconButton>
-						<Menu
-							id="menu-appbar"
-							anchorEl={anchorElNav}
-							anchorOrigin={{
-								vertical: "bottom",
-								horizontal: "left",
-							}}
-							keepMounted
-							transformOrigin={{
-								vertical: "top",
-								horizontal: "left",
-							}}
-							open={Boolean(anchorElNav)}
-							onClose={handleCloseNavMenu}
-							sx={{
-								display: { xs: "block", md: "none" },
-							}}
-						>
-							<MenuItem key="home" onClick={handleCloseUserMenu}>
-								<Typography textAlign="center" component="a" href="/">
-									Home
-								</Typography>
-							</MenuItem>
-							<MenuItem key="surf-boards" onClick={handleCloseNavMenu}>
-								<Typography textAlign="center" component="a" href="/surfboards">
-									Surfboards
-								</Typography>
-							</MenuItem>
-							<MenuItem onClick={handleCloseNavMenu}>
-								<Typography textAlign="center" component="a" href="/boogie">
-									Boogie Boards
-								</Typography>
-							</MenuItem>
-							<MenuItem onClick={handleCloseNavMenu}>
-								<Typography textAlign="center" component="a" href="/fins">
-									Surfboard Fins
-								</Typography>
-							</MenuItem>
-							<MenuItem onClick={handleCloseNavMenu}>
-								<Typography textAlign="center" component="a" href="/about-us">
-									About us
-								</Typography>
-							</MenuItem>
-						</Menu>
-					</Box>
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+  const { cartItems, setCartItems } = useContext(CartContext);
 
-					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-						<Button
-							onClick={handleCloseNavMenu}
-							sx={{
-								my: 2,
-								color: "white",
-								display: "block",
-								fontFamily: "chalkduster",
-							}}
-							component="a"
-							href="/surfboards"
-						>
-							Surfboards
-						</Button>
-						<Button
-							onClick={handleCloseNavMenu}
-							sx={{
-								my: 2,
-								color: "white",
-								display: "block",
-								fontFamily: "chalkduster",
-							}}
-							component="a"
-							href="/boogie"
-						>
-							Boogie Boards
-						</Button>
-						<Button
-							onClick={handleCloseNavMenu}
-							sx={{
-								my: 2,
-								color: "white",
-								display: "block",
-								fontFamily: "chalkduster",
-							}}
-							component="a"
-							href="/fins"
-						>
-							Surfboard Fins
-						</Button>
-						<Button
-							onClick={handleCloseNavMenu}
-							sx={{
-								my: 2,
-								color: "white",
-								display: "block",
-								fontFamily: "chalkduster",
-							}}
-							component="a"
-							href="/about-us"
-						>
-							About Us
-						</Button>
-					</Box>
-					<Box sx={{ flexGrow: 0 }}>
-						<Button href="/shopping-cart" onClick={handleCloseNavMenu}>
-							<Badge badgeContent={cartItems} color="secondary">
-								<ShoppingCartIcon
-									fontSize="large"
-									sx={{ color: "white", display: "block" }}
-								></ShoppingCartIcon>
-							</Badge>
-						</Button>
-						<Tooltip title="Open settings">
-							{/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+  useEffect(() => {
+    setCartItems(totalItems);
+  }, [totalItems]);
+  return (
+    <AppBar position="sticky" sx={{ backgroundColor: "#0e0b5c" }}>
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="/"
+            sx={{
+              mr: 3,
+              display: { xs: "none", md: "flex" },
+              fontFamily: "chalkduster",
+              fontSize: "30px",
+              letterSpacing: ".1rem",
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
+            Kook Boards
+          </Typography>
+
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: "block", md: "none" },
+              }}
+            >
+              <MenuItem key="home" onClick={handleCloseUserMenu}>
+                <Typography textAlign="center" component="a" href="/">
+                  Home
+                </Typography>
+              </MenuItem>
+              <MenuItem key="surf-boards" onClick={handleCloseNavMenu}>
+                <Typography textAlign="center" component="a" href="/surfboards">
+                  Surfboards
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center" component="a" href="/boogie">
+                  Boogie Boards
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center" component="a" href="/fins">
+                  Surfboard Fins
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center" component="a" href="/about-us">
+                  About us
+                </Typography>
+              </MenuItem>
+            </Menu>
+          </Box>
+
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{
+                my: 2,
+                color: "white",
+                display: "block",
+                fontFamily: "chalkduster",
+              }}
+              component="a"
+              href="/surfboards"
+            >
+              Surfboards
+            </Button>
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{
+                my: 2,
+                color: "white",
+                display: "block",
+                fontFamily: "chalkduster",
+              }}
+              component="a"
+              href="/boogie"
+            >
+              Boogie Boards
+            </Button>
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{
+                my: 2,
+                color: "white",
+                display: "block",
+                fontFamily: "chalkduster",
+              }}
+              component="a"
+              href="/fins"
+            >
+              Surfboard Fins
+            </Button>
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{
+                my: 2,
+                color: "white",
+                display: "block",
+                fontFamily: "chalkduster",
+              }}
+              component="a"
+              href="/about-us"
+            >
+              About Us
+            </Button>
+          </Box>
+          <Box sx={{ flexGrow: 0 }}>
+            <Button href="/shopping-cart" onClick={handleCloseNavMenu}>
+              <Badge badgeContent={cartItems} color="secondary">
+                <ShoppingCartIcon
+                  fontSize="large"
+                  sx={{ color: "white", display: "block" }}
+                ></ShoppingCartIcon>
+              </Badge>
+            </Button>
+            <Tooltip title="Open settings">
+              {/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 								<Avatar alt="K" src="/static/images/avatar/2.jpg" />
 							</IconButton> */}
 
-							<AccountCircleIcon
-								onClick={handleOpenUserMenu}
-								sx={{ p: 0, fontSize: "35px", cursor: "pointer" }}
-							></AccountCircleIcon>
-						</Tooltip>
-						<Menu
-							sx={{ mt: "45px" }}
-							id="menu-appbar"
-							anchorEl={anchorElUser}
-							anchorOrigin={{
-								vertical: "top",
-								horizontal: "right",
-							}}
-							keepMounted
-							transformOrigin={{
-								vertical: "top",
-								horizontal: "right",
-							}}
-							open={Boolean(anchorElUser)}
-							onClose={handleCloseUserMenu}
-						>
-							<MenuItem key="login" onClick={handleCloseUserMenu}>
-								<Typography textAlign="center" component="a" href="/login">
-									Login
-								</Typography>
-							</MenuItem>
-							<MenuItem key="register" onClick={handleCloseUserMenu}>
-								<Typography textAlign="center" component="a" href="/register">
-									Register
-								</Typography>
-							</MenuItem>
-							<MenuItem key="orderhistory" onClick={handleCloseUserMenu}>
-								<Typography textAlign="center" component="a" href="/orders">
-									Order History
-								</Typography>
-							</MenuItem>
-							<MenuItem key="logout" onClick={logOut}>
-								<Typography textAlign="center" component="a" href="/login">
-									Log Out
-								</Typography>
-							</MenuItem>
-						</Menu>
-					</Box>
-				</Toolbar>
-			</Container>
-		</AppBar>
-	);
+              <AccountCircleIcon
+                onClick={handleOpenUserMenu}
+                sx={{ p: 0, fontSize: "35px", cursor: "pointer" }}
+              ></AccountCircleIcon>
+            </Tooltip>
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {!cookies.jwt ? (
+                <Box>
+                  <MenuItem key="login" onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center" component="a" href="/login">
+                      Login
+                    </Typography>
+                  </MenuItem>
+
+                  <MenuItem key="register" onClick={handleCloseUserMenu}>
+                    <Typography
+                      textAlign="center"
+                      component="a"
+                      href="/register"
+                    >
+                      Register
+                    </Typography>
+                  </MenuItem>
+                </Box>
+              ) : (
+                <Box>
+                  <MenuItem key="orderhistory" onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center" component="a" href="/orders">
+                      Order History
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem key="logout" onClick={logOut}>
+                    <Typography textAlign="center" component="a" href="/login">
+                      Log Out
+                    </Typography>
+                  </MenuItem>
+                </Box>
+              )}
+            </Menu>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
 };
 export default ResponsiveAppBar;

@@ -17,6 +17,7 @@ import { Badge } from "@mui/material";
 import { CartContext } from "./../helper/Context";
 import { useCart } from "react-use-cart";
 import { useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -24,25 +25,18 @@ const ResponsiveAppBar = () => {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
 	const { totalItems } = useCart();
+	const [removeCookie] = useCookies(["jwt"]);
 	const navigate = useNavigate();
 
-	const [cookies, setCookie, removeCookie] = useCookies([]);
-	//   useEffect(()=> {
-	// 	  const verifyUser = async () =>{
-	// 		  if(!cookies.jwt){
-	// 			  navigate("/login");
-	// 		  } else {
-	// 			const { data } = await axios.post(
-	// 				"http://localhost:8080/api/",{}, {withCredentials:true}
-	// 				);
-	// 				if(!data.status){
-	// 					removeCookie("jwt")
-	// 					navigate("/login")
-	// 				}
-	// 		  }
-	// 	  };
-	// 	  verifyUser()
-	//   }, [cookies,navigate,removeCookie])
+	// console.log(cookies);
+
+	let userEmail = "?";
+
+	// if (cookies.jwt != "undefined") {
+	// 	const decoded = jwt_decode(cookies.jwt);
+	// 	console.log(decoded);
+	// 	userEmail = decoded.email;
+	// }
 
 	const logOut = () => {
 		removeCookie("jwt");
@@ -64,6 +58,12 @@ const ResponsiveAppBar = () => {
 		setAnchorElUser(null);
 	};
 	const { cartItems, setCartItems } = useContext(CartContext);
+
+	const truncate_string = function (str1, length) {
+		if (str1.constructor === String && length > 0) {
+			return str1.slice(0, length);
+		}
+	};
 
 	useEffect(() => {
 		setCartItems(totalItems);
@@ -212,7 +212,14 @@ const ResponsiveAppBar = () => {
 						</Button>
 						<Tooltip title="Open settings">
 							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-								<Avatar alt="K" src="/static/images/avatar/2.jpg" />
+								<Avatar
+									alt={
+										userEmail
+											? truncate_string(userEmail, 1).toUpperCase()
+											: "?"
+									}
+									src="/static/images/avatar/2.jpg"
+								/>
 							</IconButton>
 						</Tooltip>
 						<Menu

@@ -20,32 +20,32 @@ import OrderHistory from "./components/orderHistory";
 import { UserContext } from "./helper/UserContext";
 
 function App() {
-  const [user, setUser] = useState("");
-  const [cartItems, setCartItems] = useState("");
+	const [user, setUser] = useState("");
+	const [cartItems, setCartItems] = useState("");
 
-  console.log("app user", user);
-  return (
-    <UserContext.Provider value={{ user, setUser }}>
-      <CartContext.Provider value={{ cartItems, setCartItems }}>
-        <CartProvider>
-          <ResponsiveAppBar />
-          <Routes>
-            <Route path="/" element={<ProductsList />} />
-            <Route path="/surfboards" element={<SurfboardProducts />} />
-            <Route path="/fins" element={<FinProducts />} />
-            <Route path="/boogie" element={<BoogieProducts />} />
-            <Route path="/about-us" element={<AboutUs />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/shopping-cart" element={<Cart />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/success" element={<Success />} />
-            <Route path="/orders" element={<OrderHistory />} />
-          </Routes>
-          <Footer />
-        </CartProvider>
-      </CartContext.Provider>
-    </UserContext.Provider>
-  );
+	console.log("App user from App.js is", user);
+	return (
+		<UserContext.Provider value={{ user, setUser }}>
+			<CartContext.Provider value={{ cartItems, setCartItems }}>
+				<CartProvider>
+					<ResponsiveAppBar />
+					<Routes>
+						<Route path="/" element={<ProductsList />} />
+						<Route path="/surfboards" element={<SurfboardProducts />} />
+						<Route path="/fins" element={<FinProducts />} />
+						<Route path="/boogie" element={<BoogieProducts />} />
+						<Route path="/about-us" element={<AboutUs />} />
+						<Route path="/register" element={<Register />} />
+						<Route path="/shopping-cart" element={<Cart />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/success" element={<Success />} />
+						<Route path="/orders" element={<OrderHistory />} />
+					</Routes>
+					<Footer />
+				</CartProvider>
+			</CartContext.Provider>
+		</UserContext.Provider>
+	);
 }
 
 export default App;

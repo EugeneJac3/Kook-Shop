@@ -1,36 +1,39 @@
 import React, { useState, useEffect } from "react";
 import OrderDataService from "../services/ProductService";
-
+import jwt_decode from "jwt-decode";
 import Box from "@mui/material/Box";
 import OrderCards from "./orderCards";
+import { useCookies } from "react-cookie";
 
 const OrderHistory = () => {
-  const [allOrders, setAllOrders] = useState([]);
+	const [allOrders, setAllOrders] = useState([]);
+	const [cookies] = useCookies(["jwt"]);
 
-  useEffect(() => {
-    retrieveOrders();
-  }, []);
+	const decoded = jwt_decode(cookies.jwt);
+	const userID = decoded.id;
 
-  const retrieveOrders = () => {
-    OrderDataService.getAllOrders()
-      .then((response) => {
-        console.log("all orders", response.data);
-        const allOrders = response.data;
-        const userOrders = allOrders.filter(
-          (order) => order.userID === "123456"
-        );
+	useEffect(() => {
+		retrieveOrders();
+	}, []);
 
-        setAllOrders(userOrders);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+	const retrieveOrders = () => {
+		OrderDataService.getAllOrders()
+			.then((response) => {
+				console.log("all orders", response.data);
+				const allOrders = response.data;
+				const userOrders = allOrders.filter((order) => order.userID === userID);
 
-  return (
-    <Box>
-      <OrderCards orders={allOrders} />
-    </Box>
-  );
+				setAllOrders(userOrders);
+			})
+			.catch((e) => {
+				console.log(e);
+			});
+	};
+
+	return (
+		<Box>
+			<OrderCards orders={allOrders} />
+		</Box>
+	);
 };
 export default OrderHistory;

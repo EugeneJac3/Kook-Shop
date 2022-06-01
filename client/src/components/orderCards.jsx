@@ -11,68 +11,74 @@ import CloseIcon from "@mui/icons-material/Close";
 import OrderDetailsModal from "./orderDetailsModal";
 
 const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    borderRadius: "30px",
-  },
+	content: {
+		top: "50%",
+		left: "50%",
+		right: "auto",
+		bottom: "auto",
+		marginRight: "-50%",
+		transform: "translate(-50%, -50%)",
+		borderRadius: "30px",
+	},
 };
 
 export default function OrderCards({ orders }) {
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-  const [selectedOrder, setSelectedOrder] = useState({});
+	const [modalIsOpen, setIsOpen] = React.useState(false);
+	const [selectedOrder, setSelectedOrder] = useState({});
 
-  function openModal(order) {
-    setSelectedOrder(order);
-    setIsOpen(true);
-  }
+	function openModal(order) {
+		setSelectedOrder(order);
+		setIsOpen(true);
+	}
 
-  function closeModal() {
-    setIsOpen(false);
-  }
+	function closeModal() {
+		setIsOpen(false);
+	}
 
-  return (
-    <Box
-      className="orders"
-      sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
-    >
-      {orders.map((order, index) => (
-        <Card className="orderCard" sx={{ minwidth: 275, margin: "20px" }}>
-          <CardContent>
-            <Typography variant="body1" component="h1">
-              Order ID: {order._id}
-            </Typography>
-            <Typography variant="body1" component="p">
-              Total Items: {order.totalItems}
-            </Typography>
-            <Typography variant="body1" component="p">
-              Total Price: {order.cartTotal}
-            </Typography>
-            <Typography variant="body1" component="p">
-              Time Ordered:{order.createdAt}
-            </Typography>
-          </CardContent>
-          <CardActions onClick={() => openModal(order)}>
-            <Button size="small">Order Details</Button>
-          </CardActions>
-        </Card>
-      ))}
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-        <Box className="modalContainer">
-          <CloseIcon className="modalClose" onClick={closeModal} />
-        </Box>
+	const truncate_string = function (str1, length) {
+		if (str1.constructor === String && length > 0) {
+			return str1.slice(0, length);
+		}
+	};
 
-        <OrderDetailsModal order={selectedOrder} />
-      </Modal>
-    </Box>
-  );
+	return (
+		<Box
+			className="orders"
+			sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
+		>
+			{orders.map((order, index) => (
+				<Card className="orderCard" sx={{ minwidth: 275, margin: "20px" }}>
+					<CardContent>
+						<Typography variant="body1" component="h1">
+							Order ID: {order._id}
+						</Typography>
+						<Typography variant="body1" component="p">
+							Total Items: {order.totalItems}
+						</Typography>
+						<Typography variant="body1" component="p">
+							Total Price: ${order.cartTotal.toFixed(2)}
+						</Typography>
+						<Typography variant="body1" component="p">
+							Date Ordered: {truncate_string(order.createdAt, 10)}
+						</Typography>
+					</CardContent>
+					<CardActions onClick={() => openModal(order)}>
+						<Button size="small">Order Details</Button>
+					</CardActions>
+				</Card>
+			))}
+			<Modal
+				isOpen={modalIsOpen}
+				onRequestClose={closeModal}
+				style={customStyles}
+				contentLabel="Example Modal"
+			>
+				<Box className="modalContainer">
+					<CloseIcon className="modalClose" onClick={closeModal} />
+				</Box>
+
+				<OrderDetailsModal order={selectedOrder} />
+			</Modal>
+		</Box>
+	);
 }

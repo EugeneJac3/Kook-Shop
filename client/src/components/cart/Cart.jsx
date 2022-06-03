@@ -36,7 +36,7 @@ export default function Cart() {
 		console.log(newCartTotal);
 		try {
 			const data = await axios.post(
-				"http://localhost:8080/api/create-checkout-session",
+				"/api/create-checkout-session",
 				{ newCartTotal },
 				{
 					headers: { "Content-Type": "application/json" },

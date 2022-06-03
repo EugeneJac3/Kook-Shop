@@ -1,11 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const path = require("path");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 var corsOptions = {
-	origin: "http://localhost:8081",
+	// origin: `http://localhost:${PORT}`,
 	credentials: true,
 };
 app.use(cors(corsOptions));
@@ -20,7 +21,7 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/product.routes")(app);
-
+app.use(express.static(path.resolve(__dirname, "./client/build")));
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

@@ -32,7 +32,7 @@ export default function Success() {
 
 	const orderPostConfig = {
 		method: "post",
-		url: "http://localhost:8080/api/place-order",
+		url: "/api/place-order",
 		headers: {
 			"Content-Type": "application/json",
 		},

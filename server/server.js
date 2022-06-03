@@ -21,9 +21,12 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/product.routes")(app);
-app.use(express.static(path.resolve(__dirname, "./client/build")));
+app.use(express.static(path.join(__dirname, "/public")));
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
+app.get("*", (req, res) =>{
+	res.sendFile(path.join(__dirname + "/public/index.html"))
+})
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}.`);
 });

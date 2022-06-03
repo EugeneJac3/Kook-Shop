@@ -30,7 +30,7 @@ export default function Login() {
 		e.preventDefault();
 		try {
 			const { data } = await axios.post(
-				"http://localhost:8080/api/login",
+				"/api/login",
 				{
 					...values,
 				},

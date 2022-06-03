@@ -26,34 +26,34 @@ export default function Login() {
       position: "bottom-right",
     });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const { data } = await axios.post(
-        "http://localhost:8080/api/login",
-        {
-          ...values,
-        },
-        {
-          withCredentials: true,
-        }
-      );
-      if (data) {
-        if (data.errors) {
-          const { email, password } = data.errors;
-          if (email) generateError(email);
-          else if (password) generateError(password);
-        } else {
-          setUser(data.user);
-          console.log("data.user", data.user);
-          console.log("setUser", user);
-          navigate("/");
-        }
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		try {
+			const { data } = await axios.post(
+				"/api/login",
+				{
+					...values,
+				},
+				{
+					withCredentials: true,
+				}
+			);
+			if (data) {
+				if (data.errors) {
+					const { email, password } = data.errors;
+					if (email) generateError(email);
+					else if (password) generateError(password);
+				} else {
+					setUser(data.user);
+					console.log("data.user", data.user);
+					console.log("setUser", user);
+					navigate("/");
+				}
+			}
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
   return (
     <div className="logBody">

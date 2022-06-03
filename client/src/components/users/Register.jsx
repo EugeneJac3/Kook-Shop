@@ -21,7 +21,7 @@ export default function Register() {
 		e.preventDefault();
 		try {
 			const { data } = await axios.post(
-				"http://localhost:8080/api/register",
+				"/api/register",
 				{
 					...values,
 				},

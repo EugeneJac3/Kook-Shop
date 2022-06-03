@@ -143,8 +143,8 @@ exports.checkout = async (req, res) => {
 			},
 		],
 		mode: "payment",
-		success_url: `http://localhost:8081/success`,
-		cancel_url: `http://localhost:8081/shopping-cart`,
+		success_url: `/success`,
+		cancel_url: `/shopping-cart`,
 	});
 
 	res.json({ url: session.url });
